@@ -1,4 +1,4 @@
-package com.herren.seha.models.boards;
+package com.herren.seha.domain;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;

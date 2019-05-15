@@ -1,4 +1,4 @@
-package com.herren.seha.models.boards;
+package com.herren.seha.domain.boards;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

@@ -4,6 +4,7 @@ plugins {
 }
 
 apply plugin: 'io.spring.dependency-management'
+ext['hibernate.version'] = '5.2.11.Final'
 
 group = 'com.herren.seha'
 version = '0.0.1-SNAPSHOT'
@@ -27,7 +28,9 @@ dependencies {
     implementation 'org.springframework.session:spring-session-core'
     compileOnly 'org.projectlombok:lombok'
     runtimeOnly 'com.h2database:h2'
-    runtimeOnly 'org.postgresql:postgresql'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    compile("org.springframework.boot:spring-boot-devtools")
+    
 }

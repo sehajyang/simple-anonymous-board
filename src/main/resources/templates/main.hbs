@@ -23,17 +23,17 @@
         <tr>
             <th>게시글번호</th>
             <th>제목</th>
-            <th>작성자</th>
+            <th>내용</th>
             <th>최종수정일</th>
         </tr>
         </thead>
         <tbody id="tbody">
-        {{#each posts}}
+        {{#each boardList}}
             <tr>
-                <td>{{id}}</td>
+                <td>{{boardNo}}</td>
                 <td>{{title}}</td>
-                <td>{{author}}</td>
-                <td>{{modifiedDate}}</td>
+                <td>{{content}}</td>
+                <td>{{moddate}}</td>
             </tr>
         {{/each}}
         </tbody>

@@ -60,7 +60,7 @@ public class BoardsRepositoryTest {
         //when
         List<Boards> boardsList = boardsRepository.findAll();
 
-        //tahen
+        //then
         Boards boards = boardsList.get(0);
         assertTrue(boards.getRegdate().isAfter(now));
         assertTrue(boards.getModdate().isAfter(now));

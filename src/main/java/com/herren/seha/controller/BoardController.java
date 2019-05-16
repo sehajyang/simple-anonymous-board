@@ -1,10 +1,10 @@
 package com.herren.seha.controller;
 
-import com.herren.seha.domain.boards.BoardsRepository;
+import com.herren.seha.biz.board.BoardService;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 /**
@@ -17,11 +17,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Log4j2
 public class BoardController {
 
-    @Autowired
-    private BoardsRepository boardsRepository;
+    private BoardService boardService;
 
     @GetMapping("/")
-    public String main(){
+    public String main(Model model){
+        model.addAttribute("boardList", boardService.getBoardsList());
         return "main";
     }
 

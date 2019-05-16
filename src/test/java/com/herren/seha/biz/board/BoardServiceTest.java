@@ -4,6 +4,7 @@ import com.herren.seha.domain.boards.Boards;
 import com.herren.seha.domain.boards.BoardsRepository;
 import com.herren.seha.dto.boards.BoardsSaveRequestDto;
 import org.junit.After;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
+@Ignore
 public class BoardServiceTest {
 
     @Autowired
@@ -47,6 +49,11 @@ public class BoardServiceTest {
         assertThat(boards.getTitle()).isEqualTo(dto.getTitle());
         assertThat(boards.getContent()).isEqualTo(dto.getContent());
         assertThat(boards.getPasswd()).isEqualTo(dto.getPasswd());
+    }
+
+    @Test
+    public void Board의_특정_데이터가_조회된다() {
+
     }
 
 }

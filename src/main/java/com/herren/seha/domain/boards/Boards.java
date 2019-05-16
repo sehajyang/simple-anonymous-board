@@ -1,7 +1,6 @@
 package com.herren.seha.domain.boards;
 
 import com.herren.seha.domain.BaseTimeEntity;
-import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +15,7 @@ import javax.persistence.Id;
  * @date 2019-05-15
  */
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Getter
 @Entity
 public class Boards extends BaseTimeEntity {
@@ -41,4 +40,5 @@ public class Boards extends BaseTimeEntity {
         this.passwd = passwd;
         this.content = content;
     }
+
 }

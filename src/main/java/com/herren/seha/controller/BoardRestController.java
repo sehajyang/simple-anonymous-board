@@ -27,14 +27,5 @@ public class BoardRestController {
         return boardService.regBoards(dto);
     }
 
-//    @GetMapping("/boards/{boardNo}")
-//    public Long getBoards(Integer boardNo) {
-//        return boardService.modBoards(dto);
-//    }
-//
-//    @PostMapping("boards/{boardNo}")
-//    public String modBoards(@RequestBody BoardsSaveRequestDto dto, Integer boardNo){
-//        int result = boardService.modBoards(dto);
-//        return "";
-//    }
+
 }

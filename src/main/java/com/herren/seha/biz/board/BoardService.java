@@ -1,9 +1,11 @@
 package com.herren.seha.biz.board;
 
+import com.herren.seha.domain.boards.Boards;
 import com.herren.seha.domain.boards.BoardsRepository;
 import com.herren.seha.dto.boards.BoardsMainResponseDto;
 import com.herren.seha.dto.boards.BoardsSaveRequestDto;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Service
+@Log4j2
 public class BoardService {
     private BoardsRepository boardsRepository;
 
@@ -32,7 +35,15 @@ public class BoardService {
         return boardsRepository.save(dto.toEntity()).getBoardNo();
     }
 
-//    public Integer modBoards(BoardsSaveRequestDto dto) {
-//        return boardsRepository.modify(dto.toEntity().getBoardNo());
-//    }
+    @Transactional(readOnly = true)
+    public Boards getBoardsDetail(Long boardNo) {
+        log.debug("###################"+boardsRepository.getBoardDetail(boardNo));
+        return boardsRepository.getBoardDetail(boardNo);
+    }
+
+    @Transactional
+    public int modBoards(Long boardNo, String title, String content) {
+        return boardsRepository.modBoard(boardNo, title, content);
+    }
+
 }

@@ -37,7 +37,7 @@ public class BoardService {
 
     @Transactional(readOnly = true)
     public Boards getBoardsDetail(Long boardNo) {
-        log.debug("###################"+boardsRepository.getBoardDetail(boardNo));
+        log.debug("###################" + boardsRepository.getBoardDetail(boardNo));
         return boardsRepository.getBoardDetail(boardNo);
     }
 
@@ -46,4 +46,8 @@ public class BoardService {
         return boardsRepository.modBoard(boardNo, title, content);
     }
 
+    @Transactional
+    public int delBoards(Long boardNo) {
+        return boardsRepository.delBoard(boardNo);
+    }
 }

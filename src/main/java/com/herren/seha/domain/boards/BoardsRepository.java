@@ -29,4 +29,9 @@ public interface BoardsRepository extends JpaRepository<Boards, Long> {
            "b.content = :content " +
            "WHERE b.boardNo = :boardNo")
    int modBoard(@Param("boardNo") Long boardNo, @Param("title") String title, @Param("content") String content);
+
+   @Modifying
+   @Query("DELETE FROM Boards b " +
+           "WHERE b.boardNo = :boardNo")
+   int delBoard(@Param("boardNo")Long boardNo);
 }

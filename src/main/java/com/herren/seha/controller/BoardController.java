@@ -24,23 +24,29 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping("/")
-    public String main(Model model){
-        model.addAttribute("boardList", boardService.getBoardsList());
+    public String main() {
         return "main";
+    }
+
+    @GetMapping("/boards")
+    public String board(Model model) {
+        model.addAttribute("boardList", boardService.getBoardsList());
+        return "board";
     }
 
     @GetMapping("/boards/{boardNo}")
     public String getBoards(@PathVariable("boardNo") Long boardNo, Model model) {
-        log.debug("======================"+boardNo);
+        log.debug("======================" + boardNo);
         model.addAttribute("boardDetail", boardService.getBoardsDetail(boardNo));
         return "boardDetail";
     }
 
-
     @PostMapping("boards/{boardNo}")
-    public String modBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto){
+    public String modBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto) {
         int result = boardService.modBoards(boardNo, dto.getTitle(), dto.getContent());
-        return "redirect:/boards/"+boardNo;
+        return "redirect:/boards/" + boardNo;
     }
+
+
 
 }

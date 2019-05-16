@@ -2,9 +2,11 @@ package com.herren.seha.controller;
 
 import com.herren.seha.biz.board.BoardService;
 import com.herren.seha.dto.boards.BoardsSaveRequestDto;
+import com.herren.seha.util.Constant;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,5 +29,9 @@ public class BoardRestController {
         return boardService.regBoards(dto);
     }
 
-
+    @PostMapping("boards/{boardNo}/delete")
+    public String delBoards(@PathVariable("boardNo") Long boardNo) {
+        int result = boardService.delBoards(boardNo);
+        return (result > 0) ? Constant.RESULT_SUCCESS : Constant.RESULT_FAIL;
+    }
 }

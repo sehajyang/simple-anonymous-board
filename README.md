@@ -1,11 +1,11 @@
 # simple-anonymous-board
 심플 익명 게시판  
-[Document]()
+[Document](https://github.com/sehajyang/simple-anonymous-board/wiki)
 
 ## Skill
-- FrontEnd : Vue
+- FrontEnd : Vue(미정)
 - BackEnd : Java(JDK 8), Spring boot 2.x
-- DB : GraphSQL
+- DB : PostgraSql, H2(test 용)
 - ETC : Lombok, JPA
 
 ## 기능

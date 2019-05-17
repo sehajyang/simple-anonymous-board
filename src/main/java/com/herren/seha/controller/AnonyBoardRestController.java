@@ -24,7 +24,7 @@ public class AnonyBoardRestController {
     @Autowired
     private BoardService boardService;
 
-    @PostMapping("/boards/anony")
+    @PostMapping("/boards/anony/")
     public Long regBoards(@RequestBody BoardsSaveRequestDto dto) {
         return boardService.regAnonyBoards(dto);
     }

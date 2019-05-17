@@ -20,7 +20,7 @@ var main = {
             data: JSON.stringify(data)
         }).done(function() {
             alert('글이 등록되었습니다.');
-            location.reload();
+            location.href='/boards/anony/';
         }).fail(function (error) {
             alert(error);
         });

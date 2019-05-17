@@ -1,46 +1,62 @@
 {{> layout/header}}
-<body class="animsition">
-<h1>Anonymous Board</h1>
+<style>
+    .table-responsive {
+        padding-top: 10px;
+    }
+
+    .col-lg-12 {
+        padding-bottom: 7vh;
+    }
+
+    .main-content {
+        padding-top: 60px;
+        min-height: 80vh;
+    }
+</style>
+{{> layout/sidebar}}
 <div class="page-container">
-    <!--<div class="page-content&#45;&#45;bgf7">-->
-    <div class="section__content section__content--p30">
-        <!-- START BOARD TABLE-->
-        <div class="container">
-            <h3 class="title-5 m-b-35"><b>공지 게시판</b></h3>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#savePostsModal">글 등록
-            </button>
-            <div class="col-lg-12">
-                <div class="table-responsive table--no-card m-b-30">
-                    <!-- 목록 출력 영역 -->
-                    <table class="table table-borderless table-striped table-earning" id="board-table">
-                        <thead class="thead-strong">
-                        <tr>
-                            <th>게시글번호</th>
-                            <th>제목</th>
-                            <th>내용</th>
-                            <th class="text-right">추천</th>
-                            <th class="text-right">최종수정일</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tbody">
-                        {{#each boardList}}
-                        <tr onclick="location.href='/boards/anony/{{boardNo}}'">
-                            <td>{{boardNo}}</td>
-                            <td>{{title}}</td>
-                            <td>{{content}}</td>
-                            <td class="text-right">0</td>
-                            <td class="text-right">{{moddate}}</td>
-                        </tr>
-                        {{/each}}
-                        </tbody>
-                    </table>
+    <div class="main-container">
+        <div class="main-content">
+        <div class="section__content section__content--p30">
+            <!-- START BOARD TABLE-->
+            <div class="container">
+                <div class="col-lg-12">
+                    <h1 class="title-1 m-b-35"><b>익명 게시판</b></h1>
+                    <button type="button" class="btn btn-primary" onclick="location.href='/boards/anony/editor'">글 등록
+                    </button>
+                    <div class="table-responsive table--no-card m-b-30">
+                        <!-- 목록 출력 영역 -->
+                        <table class="table table-borderless table-striped table-earning" id="board-table">
+                            <thead class="thead-strong">
+                            <tr>
+                                <th>게시글번호</th>
+                                <th>제목</th>
+                                <th>내용</th>
+                                <th class="text-right">추천</th>
+                                <th class="text-right">최종수정일</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tbody">
+                            {{#each boardList}}
+                            <tr onclick="location.href='/boards/anony/{{boardNo}}'">
+                                <td>{{boardNo}}</td>
+                                <td>{{title}}</td>
+                                <td>{{content}}</td>
+                                <td class="text-right">0</td>
+                                <td class="text-right">{{moddate}}</td>
+                            </tr>
+                            {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
+            <!-- END BOARD TABLE-->
         </div>
-        <!-- END BOARD TABLE-->
+        </div>
     </div>
 </div>
-<script src="/js/app/write.js"></script>
 {{> layout/footer}}
+<script src="/js/app/write.js"></script>
 </body>
 </html>

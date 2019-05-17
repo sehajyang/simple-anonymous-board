@@ -28,13 +28,13 @@
                         </div>
                         <!-- START CARD EDITOR -->
                         <div class="card-body card-block">
-                            <form action="" method="post" enctype="multipart/form-data" class="form-horizontal">
+                            <form action="" method="post" class="form-horizontal">
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="disabled-input" class=" form-control-label">작성자</label>
+                                        <label for="writer" class=" form-control-label">작성자</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="disabled-input" name="disabled-input"
+                                        <input type="text" id="writer" name="disabled-input"
                                                placeholder="익명의 크라켄"
                                                disabled=""
                                                class="form-control">
@@ -61,10 +61,10 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="textarea-input" class=" form-control-label">내용</label>
+                                        <label for="content" class=" form-control-label">내용</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                        <textarea name="textarea-input" id="textarea-input" rows="9" placeholder="내용을 작성해주세요"
+                        <textarea name="textarea-input" id="content" rows="9" placeholder="내용을 작성해주세요"
                                   class="form-control"></textarea>
                                     </div>
                                 </div>
@@ -105,7 +105,7 @@
                         </div>
                         <!-- END RADIO BOX -->
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-success btn-sm">
+                            <button id="btn-save" class="btn btn-success btn-sm">
                                 <i class="fa fa-dot-circle-o"></i> Submit
                             </button>
                             <button type="reset" class="btn btn-danger btn-sm">
@@ -121,5 +121,6 @@
 </div>
 </div>
 {{> layout/footer}}
+<script src="/js/app/write.js"></script>
 </body>
 </html>

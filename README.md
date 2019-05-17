@@ -15,3 +15,5 @@
 - 공지게시판(및 답변) CRUD (상위 고정 게시물 기능)
 - 투표게시판 (별도)
 - 추천수 n개 이상이면 메일 발송 혹은 슬랙 알림 기능
+
+소스 참고 : [jojoldu/springboot-webservice](https://github.com/jojoldu/springboot-webservice)

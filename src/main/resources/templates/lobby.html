@@ -6,138 +6,11 @@
             padding-right: 0;
             padding-left: 0;
         }
-
-        .page-container {
-            background: #f7f7f7 !important;
-        }
     </style>
 </head>
+{{> layout/sidebar}}
 
-<body class="animsition">
-<div class="page-wrapper">
-    <!-- HEADER MOBILE-->
-    <header class="header-mobile d-block d-lg-none">
-        <div class="header-mobile__bar">
-            <div class="container-fluid">
-                <div class="header-mobile-inner">
-                    <a class="logo" href="index.html">
-                        <img src="/images/icon/herren_logo.png" alt="HerrenLogo"/>
-                    </a>
-                    <button class="hamburger hamburger--slider" type="button">
-                            <span class="hamburger-box">
-                                <span class="hamburger-inner"></span>
-                            </span>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <nav class="navbar-mobile">
-            <div class="container-fluid">
-                <ul class="navbar-mobile__list list-unstyled">
-                    <li class="has-sub">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-tachometer-alt"></i>Dashboard</a>
-                        <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                            <li>
-                                <a href="index.html">Dashboard 1</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="chart.html">
-                            <i class="fas fa-chart-bar"></i>Charts</a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-copy"></i>Pages</a>
-                        <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                            <li>
-                                <a href="login.html">Login</a>
-                            </li>
-                            <li>
-                                <a href="register.html">Register</a>
-                            </li>
-                            <li>
-                                <a href="forget-pass.html">Forget Password</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="has-sub">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-desktop"></i>Logout</a>
-                        <ul class="navbar-mobile-sub__list list-unstyled js-sub-list">
-                            <li>
-                                <a href="button.html">Button</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
-    <!-- END HEADER MOBILE-->
-
-    <!-- MENU SIDEBAR-->
-    <aside class="menu-sidebar d-none d-lg-block">
-        <div class="logo">
-            <h3>Herren</h3>
-        </div>
-        <div class="menu-sidebar__content js-scrollbar1">
-            <nav class="navbar-sidebar">
-                <ul class="list-unstyled navbar__list">
-                    <li class="active has-sub">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-tachometer-alt"></i>게시판</a>
-                        <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            <li>
-                                <a href="index.html">익명 게시판</a>
-                            </li>
-                            <li>
-                                <a href="index.html">공지 게시판</a>
-                            </li>
-                            <li>
-                                <a href="index.html">투표소</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <a href="chart.html">
-                            <i class="fas fa-chart-bar"></i>투표결과</a>
-                    </li>
-                    <li class="has-sub">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-copy"></i>내정보 관리</a>
-                        <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            <li>
-                                <a href="login.html">Login</a>
-                            </li>
-                            <li>
-                                <a href="register.html">Register</a>
-                            </li>
-                            <li>
-                                <a href="forget-pass.html">Forget Password</a>
-                            </li>
-                            <li>
-                                <a href="forget-pass.html">Logout</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="has-sub">
-                        <a class="js-arrow" href="#">
-                            <i class="fas fa-desktop"></i>건의사항</a>
-                        <ul class="list-unstyled navbar__sub-list js-sub-list">
-                            <li>
-                                <a href="button.html">Button</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </aside>
-    <!-- END MENU SIDEBAR-->
     <div class="page-container">
-        <!--<div class="page-content&#45;&#45;bgf7">-->
         <div class="section__content section__content--p30">
             <!-- STATISTIC-->
             <section class="statistic statistic2">
@@ -212,12 +85,12 @@
                         <div class="col-md-6 col-lg-4">
                             <!-- TOP CAMPAIGN-->
                             <div class="top-campaign">
-                                <h3 class="title-3 m-b-30">가장 많은 좋아요</h3>
+                                <h3 class="title-3 m-b-30">가장 많은 추천</h3>
                                 <div class="table-responsive">
                                     <table class="table table-top-campaign">
                                         <tbody>
                                         {{#each boardList}}
-                                        <tr onclick="location.href='/boards/anony/{{boardNo}}'">
+                                        <tr onclick="location.href='/anonyBoards/anony/{{boardNo}}'">
                                             <td>{{@index}}. {{title}}</td>
                                             <td class="text-right">0</td>
                                         </tr>
@@ -259,6 +132,7 @@
             <!-- START BOARD TABLE-->
             <div class="container">
                 <h3 class="title-5 m-b-35"><b>공지 게시판</b></h3>
+                <button type="button" class="btn btn-primary" onclick="location.href='/boards/anony/editor'">글 등록</button>
                 <div class="col-lg-12">
                     <div class="table-responsive table--no-card m-b-30">
                         <!-- 목록 출력 영역 -->
@@ -268,7 +142,7 @@
                                 <th>게시글번호</th>
                                 <th>제목</th>
                                 <th>내용</th>
-                                <th class="text-right">좋아요</th>
+                                <th class="text-right">추천</th>
                                 <th class="text-right">최종수정일</th>
                             </tr>
                             </thead>
@@ -328,3 +202,6 @@
 </div>
 
 {{> layout/footer}}
+<script src="/js/app/write.js"></script>
+</body>
+</html>

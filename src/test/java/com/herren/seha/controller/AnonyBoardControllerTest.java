@@ -19,7 +19,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @Ignore
-public class BoardControllerTest {
+public class AnonyBoardControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;

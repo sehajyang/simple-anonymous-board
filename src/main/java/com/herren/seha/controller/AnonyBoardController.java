@@ -19,34 +19,44 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Controller
 @AllArgsConstructor
 @Log4j2
-public class BoardController {
+public class AnonyBoardController {
 
     private BoardService boardService;
 
     @GetMapping("/")
-    public String main() {
+    public String mainPage() {
         return "main";
     }
 
-    @GetMapping("/boards/anony")
-    public String board(Model model) {
-        model.addAttribute("boardList", boardService.getBoardsList());
+    @GetMapping("/lobby")
+    public String lobbyPage(Model model) {
+        model.addAttribute("boardList", boardService.getAnonyBoardsLists());
         return "lobby";
     }
 
+    @GetMapping("/boards/anony")
+    public String getAnonyBoardsListPage(Model model) {
+        model.addAttribute("boardList", boardService.getAnonyBoardsLists());
+        return "anony/boardList";
+    }
+
     @GetMapping("/boards/anony/{boardNo}")
-    public String getBoards(@PathVariable("boardNo") Long boardNo, Model model) {
+    public String getAnonyBoardsDetail(@PathVariable("boardNo") Long boardNo, Model model) {
         log.debug("======================" + boardNo);
-        model.addAttribute("boardDetail", boardService.getBoardsDetail(boardNo));
+        model.addAttribute("boardDetail", boardService.getAnonyBoardsDetail(boardNo));
         return "anony/boardDetail";
     }
 
-    @PostMapping("boards/anony/{boardNo}")
-    public String modBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto) {
-        int result = boardService.modBoards(boardNo, dto.getTitle(), dto.getContent());
-        return "redirect:/boards/anony" + boardNo;
+    @GetMapping("/boards/anony/editor")
+    public String getAnonyBoardsEditor() {
+        return "anony/editor";
     }
 
+    @PostMapping("boards/anony/{boardNo}")
+    public String modAnonyBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto) {
+        int result = boardService.modAnonyBoards(boardNo, dto.getTitle(), dto.getContent());
+        return "redirect:/boards/anony" + boardNo;
+    }
 
 
 }

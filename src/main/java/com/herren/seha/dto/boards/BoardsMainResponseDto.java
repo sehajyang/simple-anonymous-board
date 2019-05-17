@@ -1,6 +1,6 @@
 package com.herren.seha.dto.boards;
 
-import com.herren.seha.domain.boards.Boards;
+import com.herren.seha.domain.boards.anony.AnonyBoards;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -20,7 +20,7 @@ public class BoardsMainResponseDto {
     private String content;
     private String moddate;
 
-    public BoardsMainResponseDto(Boards entity) {
+    public BoardsMainResponseDto(AnonyBoards entity) {
         boardNo = entity.getBoardNo();
         title = entity.getTitle();
         passwd = entity.getPasswd();

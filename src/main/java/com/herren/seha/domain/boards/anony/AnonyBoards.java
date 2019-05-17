@@ -1,4 +1,4 @@
-package com.herren.seha.domain.boards;
+package com.herren.seha.domain.boards.anony;
 
 import com.herren.seha.domain.BaseTimeEntity;
 import lombok.Builder;
@@ -15,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Entity
-public class Boards extends BaseTimeEntity {
+public class AnonyBoards extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
@@ -32,7 +32,7 @@ public class Boards extends BaseTimeEntity {
     private Integer hit;
 
     @Builder
-    public Boards(String title, String passwd, String content) {
+    public AnonyBoards(String title, String passwd, String content) {
         this.title = title;
         this.passwd = passwd;
         this.content = content;

@@ -1,7 +1,7 @@
 package com.herren.seha.biz.board;
 
-import com.herren.seha.domain.boards.Boards;
-import com.herren.seha.domain.boards.BoardsRepository;
+import com.herren.seha.domain.boards.anony.AnonyBoards;
+import com.herren.seha.domain.boards.anony.AnonyBoardsRepository;
 import com.herren.seha.dto.boards.BoardsSaveRequestDto;
 import org.junit.After;
 import org.junit.Ignore;
@@ -25,11 +25,11 @@ public class BoardServiceTest {
     private BoardService boardService;
 
     @Autowired
-    private BoardsRepository boardsRepository;
+    private AnonyBoardsRepository anonyBoardsRepository;
 
     @After
     public void cleanup() {
-        boardsRepository.deleteAll();
+        anonyBoardsRepository.deleteAll();
     }
 
     @Test
@@ -42,13 +42,13 @@ public class BoardServiceTest {
                 .build();
 
         //when
-        boardService.regBoards(dto);
+        boardService.regAnonyBoards(dto);
 
         //then
-        Boards boards = boardsRepository.findAll().get(0);
-        assertThat(boards.getTitle()).isEqualTo(dto.getTitle());
-        assertThat(boards.getContent()).isEqualTo(dto.getContent());
-        assertThat(boards.getPasswd()).isEqualTo(dto.getPasswd());
+        AnonyBoards anonyBoards = anonyBoardsRepository.findAll().get(0);
+        assertThat(anonyBoards.getTitle()).isEqualTo(dto.getTitle());
+        assertThat(anonyBoards.getContent()).isEqualTo(dto.getContent());
+        assertThat(anonyBoards.getPasswd()).isEqualTo(dto.getPasswd());
     }
 
     @Test

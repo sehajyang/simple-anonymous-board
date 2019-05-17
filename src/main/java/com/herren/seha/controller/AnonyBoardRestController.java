@@ -19,19 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @AllArgsConstructor
 @Log4j2
-public class BoardRestController {
+public class AnonyBoardRestController {
 
     @Autowired
     private BoardService boardService;
 
     @PostMapping("/boards/anony")
     public Long regBoards(@RequestBody BoardsSaveRequestDto dto) {
-        return boardService.regBoards(dto);
+        return boardService.regAnonyBoards(dto);
     }
 
     @PostMapping("boards/anony/{boardNo}/delete")
     public String delBoards(@PathVariable("boardNo") Long boardNo) {
-        int result = boardService.delBoards(boardNo);
+        int result = boardService.delAnonyBoards(boardNo);
         return (result > 0) ? Constant.RESULT_SUCCESS : Constant.RESULT_FAIL;
     }
 }

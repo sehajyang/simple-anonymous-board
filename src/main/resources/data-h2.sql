@@ -1,2 +1,2 @@
-insert into boards (board_no, title, passwd, content, regdate, moddate) values (1,'테스트1', 'pwd1234', '테스트1의 본문', now(), now());
-insert into boards (board_no, title, passwd, content, regdate, moddate) values (2,'테스트2', 'pwd1234', '테스트2의 본문', now(), now());
+insert into anonyBoards (board_no, title, passwd, content, regdate, moddate) values (1,'테스트1', 'pwd1234', '테스트1의 본문', now(), now());
+insert into anonyBoards (board_no, title, passwd, content, regdate, moddate) values (2,'테스트2', 'pwd1234', '테스트2의 본문', now(), now());

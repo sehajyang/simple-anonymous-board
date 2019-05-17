@@ -1,6 +1,6 @@
 package com.herren.seha.dto.boards;
 
-import com.herren.seha.domain.boards.Boards;
+import com.herren.seha.domain.boards.anony.AnonyBoards;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,8 +27,8 @@ public class BoardsSaveRequestDto {
         this.passwd = passwd;
     }
 
-    public Boards toEntity(){
-        return Boards.builder()
+    public AnonyBoards toEntity(){
+        return AnonyBoards.builder()
                 .title(title)
                 .content(content)
                 .passwd(passwd)

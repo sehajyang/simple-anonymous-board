@@ -1,7 +1,7 @@
 package com.herren.seha.biz.board;
 
-import com.herren.seha.domain.boards.Boards;
-import com.herren.seha.domain.boards.BoardsRepository;
+import com.herren.seha.domain.boards.anony.AnonyBoards;
+import com.herren.seha.domain.boards.anony.AnonyBoardsRepository;
 import com.herren.seha.dto.boards.BoardsMainResponseDto;
 import com.herren.seha.dto.boards.BoardsSaveRequestDto;
 import lombok.AllArgsConstructor;
@@ -21,33 +21,33 @@ import java.util.stream.Collectors;
 @Service
 @Log4j2
 public class BoardService {
-    private BoardsRepository boardsRepository;
+    private AnonyBoardsRepository anonyBoardsRepository;
 
     @Transactional(readOnly = true)
-    public List<BoardsMainResponseDto> getBoardsList() {
-        return boardsRepository.getBoardsList()
+    public List<BoardsMainResponseDto> getAnonyBoardsLists() {
+        return anonyBoardsRepository.getBoardsList()
                 .map(BoardsMainResponseDto::new)
                 .collect(Collectors.toList());
     }
 
     @Transactional
-    public Long regBoards(BoardsSaveRequestDto dto) {
-        return boardsRepository.save(dto.toEntity()).getBoardNo();
+    public Long regAnonyBoards(BoardsSaveRequestDto dto) {
+        return anonyBoardsRepository.save(dto.toEntity()).getBoardNo();
     }
 
     @Transactional(readOnly = true)
-    public Boards getBoardsDetail(Long boardNo) {
-        log.debug("###################" + boardsRepository.getBoardDetail(boardNo));
-        return boardsRepository.getBoardDetail(boardNo);
+    public AnonyBoards getAnonyBoardsDetail(Long boardNo) {
+        log.debug("###################" + anonyBoardsRepository.getBoardDetail(boardNo));
+        return anonyBoardsRepository.getBoardDetail(boardNo);
     }
 
     @Transactional
-    public int modBoards(Long boardNo, String title, String content) {
-        return boardsRepository.modBoard(boardNo, title, content);
+    public int modAnonyBoards(Long boardNo, String title, String content) {
+        return anonyBoardsRepository.modBoard(boardNo, title, content);
     }
 
     @Transactional
-    public int delBoards(Long boardNo) {
-        return boardsRepository.delBoard(boardNo);
+    public int delAnonyBoards(Long boardNo) {
+        return anonyBoardsRepository.delBoard(boardNo);
     }
 }

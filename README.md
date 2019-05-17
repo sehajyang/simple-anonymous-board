@@ -1,6 +1,7 @@
 # simple-anonymous-board
 심플 익명 게시판  
 [API Document](https://github.com/sehajyang/simple-anonymous-board/wiki)
+[프로젝트 일정관리](https://github.com/sehajyang/simple-anonymous-board/projects/1)
 
 ## Skill
 - FrontEnd : Vue(예정), handlebars.js 

@@ -14,7 +14,7 @@ var main = {
 
         $.ajax({
             type: 'POST',
-            url: '/boards',
+            url: '/boards/anony/',
             dataType: 'json',
             contentType:'application/json; charset=utf-8',
             data: JSON.stringify(data)

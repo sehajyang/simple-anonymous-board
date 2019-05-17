@@ -24,12 +24,12 @@ public class BoardRestController {
     @Autowired
     private BoardService boardService;
 
-    @PostMapping("/boards")
+    @PostMapping("/boards/anony")
     public Long regBoards(@RequestBody BoardsSaveRequestDto dto) {
         return boardService.regBoards(dto);
     }
 
-    @PostMapping("boards/{boardNo}/delete")
+    @PostMapping("boards/anony/{boardNo}/delete")
     public String delBoards(@PathVariable("boardNo") Long boardNo) {
         int result = boardService.delBoards(boardNo);
         return (result > 0) ? Constant.RESULT_SUCCESS : Constant.RESULT_FAIL;

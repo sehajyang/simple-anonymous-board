@@ -28,23 +28,23 @@ public class BoardController {
         return "main";
     }
 
-    @GetMapping("/boards")
+    @GetMapping("/boards/anony")
     public String board(Model model) {
         model.addAttribute("boardList", boardService.getBoardsList());
-        return "board";
+        return "lobby";
     }
 
-    @GetMapping("/boards/{boardNo}")
+    @GetMapping("/boards/anony/{boardNo}")
     public String getBoards(@PathVariable("boardNo") Long boardNo, Model model) {
         log.debug("======================" + boardNo);
         model.addAttribute("boardDetail", boardService.getBoardsDetail(boardNo));
-        return "boardDetail";
+        return "anony/boardDetail";
     }
 
-    @PostMapping("boards/{boardNo}")
+    @PostMapping("boards/anony/{boardNo}")
     public String modBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto) {
         int result = boardService.modBoards(boardNo, dto.getTitle(), dto.getContent());
-        return "redirect:/boards/" + boardNo;
+        return "redirect:/boards/anony" + boardNo;
     }
 
 

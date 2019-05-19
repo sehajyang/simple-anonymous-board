@@ -31,6 +31,7 @@ public class AnonyBoardController {
     @GetMapping("/lobby")
     public String lobbyPage(Model model) {
         model.addAttribute("boardList", boardService.getAnonyBoardsLists());
+        model.addAttribute("boardList", boardService.getAnonyBoardsLists());
         return "lobby";
     }
 

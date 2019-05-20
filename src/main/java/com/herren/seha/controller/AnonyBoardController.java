@@ -3,6 +3,7 @@ package com.herren.seha.controller;
 import com.herren.seha.biz.board.BoardService;
 import com.herren.seha.dto.boards.BoardsMainResponseDto;
 import com.herren.seha.dto.boards.BoardsSaveRequestDto;
+import com.herren.seha.dto.boards.NoticeBoardsMainResponseDto;
 import com.herren.seha.util.CommonUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -35,7 +36,8 @@ public class AnonyBoardController {
     @GetMapping("/lobby")
     public String lobbyPage(Model model) {
         List<BoardsMainResponseDto> boardList = boardService.getAnonyBoardsLists();
-        model.addAttribute("boardList", CommonUtil.makeLimitList(boardList, 10));
+        List<NoticeBoardsMainResponseDto> noticeBoardList = boardService.getNoticeBoardsLists();
+        model.addAttribute("boardList", CommonUtil.makeLimitListForNotice(noticeBoardList, 10));
         model.addAttribute("boardListLimit", CommonUtil.makeLimitList(boardList, 5));
         return "lobby";
     }

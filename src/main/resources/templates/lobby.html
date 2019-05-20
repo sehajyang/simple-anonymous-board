@@ -16,10 +16,14 @@
             margin-bottom: 0;
             padding-bottom: 50px;
         }
+
+        .campaign-small-text{
+            float:right;
+            padding-top:17px;
+        }
     </style>
 </head>
 {{> layout/sidebar}}
-<script src="/js/app/handlebars-helper.js"></script>
     <div class="page-container">
         <div class="section__content section__content--p30">
             <!-- STATISTIC-->
@@ -41,7 +45,7 @@
                         <div class="col-md-6 col-lg-3">
                             <div class="statistic__item statistic__item--orange">
                                 <h2 class="number">4</h2>
-                                <span class="desc">진행중인 투표</span>
+                                <span class="desc">새로 등록된 제안</span>
                                 <div class="icon">
                                     <i class="zmdi zmdi-shopping-cart"></i>
                                 </div>
@@ -96,7 +100,7 @@
                         <div class="col-md-6 col-lg-4">
                             <!-- TOP CAMPAIGN-->
                             <div class="top-campaign">
-                                <h3 class="title-3 m-b-30">가장 많은 추천</h3>
+                                <h3 class="title-3 m-b-30">추천 TOP 5</h3>
                                 <div class="table-responsive">
                                     <table class="table table-top-campaign">
                                         <tbody>
@@ -109,7 +113,9 @@
                                         </tbody>
                                     </table>
                                 </div>
+                                <small class="campaign-small-text">발송처리된 글은 추천리스트에서 사라집니다</small>
                             </div>
+
                             <!-- END TOP CAMPAIGN-->
                         </div>
                         <div class="col-md-6 col-lg-4">
@@ -130,6 +136,10 @@
                                     <div class="chart-note">
                                         <span class="dot dot--red"></span>
                                         <span>불편사항</span>
+                                    </div>
+                                    <div class="chart-note">
+                                        <span class="dot dot--green"></span>
+                                        <span>자유 글</span>
                                     </div>
                                 </div>
                             </div>
@@ -158,7 +168,7 @@
                             </thead>
                             <tbody id="tbody">
                             {{#each boardList}}
-                            <tr onclick="location.href='/boards/anony/{{boardNo}}'">
+                            <tr onclick="location.href='/boards/notice/{{boardNo}}'">
                                 <td>{{boardNo}}</td>
                                 <td width="40%">{{title}}</td>
                                 <td>{{writer}}</td>

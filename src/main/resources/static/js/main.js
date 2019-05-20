@@ -334,26 +334,29 @@
     // Percent Chart
     var ctx = document.getElementById("percent-chart");
     if (ctx) {
-      ctx.height = 280;
+      ctx.height = 250;
       var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
           datasets: [
             {
               label: "My First dataset",
-              data: [60, 40],
+              data: [30, 20, 50],
               backgroundColor: [
                 '#00b5e9',
-                '#fa4251'
+                '#fa4251',
+                '#00ad5f'
               ],
               hoverBackgroundColor: [
                 '#00b5e9',
-                '#fa4251'
+                '#fa4251',
+                '#00ad5f'
               ],
               borderWidth: [
-                0, 0
+                0, 0, 0
               ],
               hoverBorderColor: [
+                'transparent',
                 'transparent',
                 'transparent'
               ]
@@ -361,7 +364,8 @@
           ],
           labels: [
             '건의사항',
-            '불편사항'
+            '불편사항',
+            '자유 글'
           ]
         },
         options: {

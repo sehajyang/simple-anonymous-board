@@ -3,9 +3,7 @@ package com.herren.seha.dto.boards;
 import com.herren.seha.domain.boards.anony.AnonyBoards;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Optional;
+import static com.herren.seha.util.CommonUtil.toStringDateTime;
 
 /**
  * @author seha
@@ -30,14 +28,6 @@ public class BoardsMainResponseDto {
         moddate = toStringDateTime(entity.getModdate());
     }
 
-    /**
-     * Java 8 버전
-     */
-    private String toStringDateTime(LocalDateTime localDateTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-        return Optional.ofNullable(localDateTime)
-                .map(formatter::format)
-                .orElse("");
-    }
+
 }
 

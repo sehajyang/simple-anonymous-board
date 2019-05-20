@@ -18,6 +18,7 @@
             <section class="statistic statistic2">
                 <div class="container">
                     <h1>Herren Anonymous Board</h1>
+                    <h1>{{sayHello "seha"}}</h1>
                     <hr>
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
@@ -91,12 +92,12 @@
                                 <div class="table-responsive">
                                     <table class="table table-top-campaign">
                                         <tbody>
-                                        {{#each_upto boardList 5}}
+                                        {{#each boardList.[5]}}
                                         <tr onclick="location.href='/boards/anony/{{boardNo}}'">
                                             <td>{{@index}}. {{title}}</td>
                                             <td class="text-right">0</td>
                                         </tr>
-                                        {{/each_upto}}
+                                        {{/each}}
                                         </tbody>
                                     </table>
                                 </div>

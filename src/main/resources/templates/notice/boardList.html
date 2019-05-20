@@ -30,8 +30,8 @@
             <!-- START BOARD TABLE-->
             <div class="container">
                 <div class="col-lg-12">
-                    <h1 class="title-1 m-b-35"><b>익명 게시판</b></h1>
-                    <button type="button" class="btn btn-primary" onclick="location.href='/boards/anony/editor'">글 등록
+                    <h1 class="title-1 m-b-35"><b>공지 게시판</b></h1>
+                    <button type="button" class="btn btn-primary" onclick="location.href='/boards/notice/editor'">글 등록
                     </button>
                     <div class="table-responsive table--no-card m-b-30">
                         <!-- 목록 출력 영역 -->
@@ -48,11 +48,11 @@
                             </thead>
                             <tbody id="tbody">
                             {{#each boardList}}
-                            <tr onclick="location.href='/boards/anony/{{boardNo}}'">
+                            <tr onclick="location.href='/boards/notice/{{boardNo}}'">
                                 <td>{{boardNo}}</td>
                                 <td>미정</td>
                                 <td class="title-td">{{title}}</td>
-                                <td>{{writer}}</td>
+                                <td>관리자</td>
                                 <td class="text-right">0</td>
                                 <td class="text-right">{{moddate}}</td>
                             </tr>

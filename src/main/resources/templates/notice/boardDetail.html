@@ -26,7 +26,7 @@
                     </div>
                     <div class="card">
                         <div class="card-header">
-                            <strong>익명게시판 </strong> 글 보기
+                            <strong>공지게시판 </strong> 글 보기
                         </div>
                         <div class="card-body card-block">
                             <!--목록 출력 영역 -->
@@ -43,7 +43,7 @@
                                     <label class=" form-control-label">작성자</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    {{boardDetail.writer}}
+                                    관리자
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -59,7 +59,7 @@
                                     <label class=" form-control-label">카테고리</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    미정
+                                    답변
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -81,7 +81,7 @@
                             <button type="button" class="btn btn-primary btn-sm"
                                     onclick="onclickDelPost('{{boardDetail.boardNo}}')">글 삭제
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="location.href='/'">홈</button>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="location.href='/lobby'">홈</button>
                             <button type="button" class="btn btn-primary btn-sm" onclick="history.back()">뒤로가기</button>
                             <label style="float: right;">최종 수정일 {{boardDetail.moddate}}</label>
                         </div>

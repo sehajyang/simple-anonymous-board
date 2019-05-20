@@ -360,8 +360,8 @@
             }
           ],
           labels: [
-            'Products',
-            'Services'
+            '건의사항',
+            '불편사항'
           ]
         },
         options: {

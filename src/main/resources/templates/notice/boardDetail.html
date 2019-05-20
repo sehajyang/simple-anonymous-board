@@ -27,6 +27,7 @@
                     <div class="card">
                         <div class="card-header">
                             <strong>공지게시판 </strong> 글 보기
+                            <input type="hidden" id="board-kind" value="notice">
                         </div>
                         <div class="card-body card-block">
                             <!--목록 출력 영역 -->
@@ -75,14 +76,13 @@
                         </div>
                         <div class="card-footer">
                             <input type="hidden" id="board-no" value="{{boardDetail.boardNo}}">
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                    data-target="#modPostsModal">글 수정
+                            <button type="button" class="btn btn-primary btn-sm" id="btn-modify"><i class="fa fa-dot-circle-o"></i>글 수정
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm"
-                                    onclick="onclickDelPost('{{boardDetail.boardNo}}')">글 삭제
+                            <button type="button" class="btn btn-danger btn-sm"
+                                    onclick="onclickDelPost('{{boardDetail.boardNo}}')"><i class="fa fa-ban"></i>글 삭제
                             </button>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="location.href='/lobby'">홈</button>
-                            <button type="button" class="btn btn-primary btn-sm" onclick="history.back()">뒤로가기</button>
+                            <button type="button" class="btn btn-success btn-sm" onclick="location.href='/lobby'"><i class="fa fa-home"></i>홈</button>
+                            <button type="button" class="btn btn-success btn-sm" onclick="history.back()"><i class="fa fa-react"></i>뒤로가기</button>
                             <label style="float: right;">최종 수정일 {{boardDetail.moddate}}</label>
                         </div>
                     </div>
@@ -93,7 +93,7 @@
 
     </div>
 </div>
-
+<script src="/js/app/modify.js"></script>
 <script src="/js/app/delete.js"></script>
 {{> layout/footer}}
 </body>

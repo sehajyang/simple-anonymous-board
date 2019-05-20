@@ -151,7 +151,7 @@
                             <tr>
                                 <th>게시글번호</th>
                                 <th>제목</th>
-                                <th>내용</th>
+                                <th>작성자</th>
                                 <th class="text-right">추천</th>
                                 <th class="text-right">최종수정일</th>
                             </tr>
@@ -160,8 +160,8 @@
                             {{#each boardList}}
                             <tr onclick="location.href='/boards/anony/{{boardNo}}'">
                                 <td>{{boardNo}}</td>
-                                <td>{{title}}</td>
-                                <td>{{content}}</td>
+                                <td width="40%">{{title}}</td>
+                                <td>{{writer}}</td>
                                 <td class="text-right">0</td>
                                 <td class="text-right">{{moddate}}</td>
                             </tr>

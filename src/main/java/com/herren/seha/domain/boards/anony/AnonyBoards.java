@@ -26,15 +26,18 @@ public class AnonyBoards extends BaseTimeEntity {
 
     private String passwd;
 
+    private String writer;
+
     @Column(columnDefinition = "TEXT")
     private String content;
 
     private Integer hit;
 
     @Builder
-    public AnonyBoards(String title, String passwd, String content) {
+    public AnonyBoards(String title, String passwd, String writer, String content) {
         this.title = title;
         this.passwd = passwd;
+        this.writer = writer;
         this.content = content;
     }
 

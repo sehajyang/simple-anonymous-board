@@ -35,9 +35,8 @@ public class AnonyBoardController {
     @GetMapping("/lobby")
     public String lobbyPage(Model model) {
         List<BoardsMainResponseDto> boardList = boardService.getAnonyBoardsLists();
-        model.addAttribute("boardList", boardList);
-
-        model.addAttribute("boardListLimit", CommonUtil.makeLimitFiveList(boardList, 5));
+        model.addAttribute("boardList", CommonUtil.makeLimitList(boardList, 8));
+        model.addAttribute("boardListLimit", CommonUtil.makeLimitList(boardList, 5));
         return "lobby";
     }
 

@@ -9,6 +9,7 @@ var main = {
         var data = {
             title: $('#title').val(),
             passwd: $('#passwd').val(),
+            writer: $('#writer').val(),
             content: $('#content').val()
         };
 

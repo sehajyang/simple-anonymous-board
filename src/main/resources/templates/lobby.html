@@ -7,6 +7,15 @@
             padding-left: 0;
             padding-bottom: 7vh;
         }
+
+        .top-campaign {
+            padding-bottom: 50px;
+        }
+
+        .chart-percent-2 {
+            margin-bottom: 0;
+            padding-bottom: 50px;
+        }
     </style>
 </head>
 {{> layout/sidebar}}
@@ -17,17 +26,8 @@
             <section class="statistic statistic2">
                 <div class="container">
                     <h1>Herren Anonymous Board</h1>
-                    <h1>{{sayHello "seha"}}</h1>
+                    <h2>{{sayHello "seha"}}</h2>
                     <hr>
-                    <ul>
-                        {{#each boardList}}
-                        {{#isVowel}}
-                        <li class="vowel">{{title}}</li>
-                        {{else}}
-                        <li class="consonant">{{moddate}}</li>
-                        {{/isVowel}}
-                        {{/each}}
-                    </ul>
                     <div class="row">
                         <div class="col-md-6 col-lg-3">
                             <div class="statistic__item statistic__item--green">

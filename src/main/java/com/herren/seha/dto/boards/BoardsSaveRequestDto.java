@@ -19,12 +19,14 @@ public class BoardsSaveRequestDto {
     private String title;
     private String content;
     private String passwd;
+    private String writer;
 
     @Builder
-    public BoardsSaveRequestDto(String title, String content, String passwd) {
+    public BoardsSaveRequestDto(String title, String content, String passwd, String writer) {
         this.title = title;
         this.content = content;
         this.passwd = passwd;
+        this.writer = writer;
     }
 
     public AnonyBoards toEntity(){
@@ -32,6 +34,7 @@ public class BoardsSaveRequestDto {
                 .title(title)
                 .content(content)
                 .passwd(passwd)
+                .writer(writer)
                 .build();
     }
 

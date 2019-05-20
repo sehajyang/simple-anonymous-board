@@ -17,6 +17,7 @@ public class BoardsMainResponseDto {
     private Long boardNo;
     private String title;
     private String passwd;
+    private String writer;
     private String content;
     private String moddate;
 
@@ -24,6 +25,7 @@ public class BoardsMainResponseDto {
         boardNo = entity.getBoardNo();
         title = entity.getTitle();
         passwd = entity.getPasswd();
+        writer = entity.getWriter();
         content = entity.getContent();
         moddate = toStringDateTime(entity.getModdate());
     }

@@ -11,7 +11,7 @@ import java.util.List;
  */
 public class CommonUtil {
 
-    public static List<BoardsMainResponseDto> makeLimitFiveList(List<BoardsMainResponseDto> list, int max) {
+    public static List<BoardsMainResponseDto> makeLimitList(List<BoardsMainResponseDto> list, int max) {
         List<BoardsMainResponseDto> resultList = new ArrayList<>();
         for (int i = 0; i < max; i++) {
             resultList.add(list.get(i));

@@ -37,7 +37,6 @@ public class BoardService {
 
     @Transactional(readOnly = true)
     public AnonyBoards getAnonyBoardsDetail(Long boardNo) {
-        log.debug("###################" + anonyBoardsRepository.getBoardDetail(boardNo));
         return anonyBoardsRepository.getBoardDetail(boardNo);
     }
 

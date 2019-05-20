@@ -7,6 +7,7 @@ import pl.allegro.tech.boot.autoconfigure.handlebars.HandlebarsHelper;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,5 +34,24 @@ public class CommonHelper {
         return new String(data);
     }
 
+    public String randomWriterName() {
+        ArrayList<String> animalList = new ArrayList();
+        animalList.add("크라켄");
+        animalList.add("고슴도치");
+        animalList.add("로보로보스키");
+        animalList.add("고양이");
+        animalList.add("강아지");
+        animalList.add("기린");
+        animalList.add("치타");
+        animalList.add("다람쥐");
+        animalList.add("코끼리");
 
+        double randomVal = Math.random();
+        int intVal = (int) (randomVal * animalList.size()) + 1;
+        System.err.println("ajdajd"+animalList.get(intVal));
+        return String.format("익명의 %s", Objects.firstNonNull(animalList.get(intVal), "unknown"));
+    }
 }
+
+
+

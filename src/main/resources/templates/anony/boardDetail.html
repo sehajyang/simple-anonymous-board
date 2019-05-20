@@ -1,67 +1,59 @@
 {{> layout/header}}
-<body class="animsition">
-<h1>Anonymous Board</h1>
-<div class="col-md-12">
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modPostsModal">글 수정</button>
-    <button type="button" class="btn btn-primary" onclick="onclickDelPost('{{boardDetail.boardNo}}')">글 삭제</button>
-    <button type="button" class="btn btn-primary" onclick="location.href='/'">홈</button>
-    <button type="button" class="btn btn-primary" onclick="history.back()">뒤로가기</button>
-    <br/>
-    <br/>
-    <!-- 목록 출력 영역 -->
-    <table class="table table-horizontal table-bordered">
-        <tbody id="tbody">
-        <tr>
-            <th>게시글번호</th>
-            <td>{{boardDetail.boardNo}}</td>
-        </tr>
-        <tr>
-            <th>제목</th>
-            <td>{{boardDetail.title}}</td>
-        </tr>
-        <tr>
-            <th>내용</th>
-            <td>{{boardDetail.content}}</td>
-        </tr>
-        <tr>
-            <th>최종수정일</th>
-            <td>{{boardDetail.moddate}}</td>
-        </tr>
-        </tbody>
-    </table>
-    <input type="hidden" id="board-no" value="{{boardDetail.boardNo}}">
-</div>
+<style>
+    .col-lg-8 {
+        height: 95vh;
+    }
+</style>
+{{> layout/sidebar}}
 
-<!-- Modal 영역 -->
-<div class="modal fade" id="modPostsModal" tabindex="-1" role="dialog" aria-labelledby="modPostsLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modPostsLabel">게시글 수정</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
+<div class="page-container">
+    <div class="main-container">
+        <div class="section__content section__content--p30">
+            <div class="row">
+            <div class="col-lg-8">
+                <div id="page-title-text">
+                    <h1>Herren Anonymous Board</h1>
+                    <hr>
+                </div>
+                <div class="card">
+                    <div class="card-header">
+                        <strong>익명게시판 </strong> 글 보기
+                    </div>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modPostsModal">글 수정
                 </button>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label for="title">제목</label>
-                        <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
-                    </div>
-                    <div class="form-group">
-                        <label for="passwd"> 비밀번호 </label>
-                        <input type="password" class="form-control" id="passwd" placeholder="비밀번호를 입력하세요">
-                    </div>
-                    <div class="form-group">
-                        <label for="content"> 내용 </label>
-                        <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
-                        <button type="button" class="btn btn-primary" id="btn-modify">등록</button>
-                    </div>
-                </form>
+                <button type="button" class="btn btn-primary" onclick="onclickDelPost('{{boardDetail.boardNo}}')">글 삭제
+                </button>
+                <button type="button" class="btn btn-primary" onclick="location.href='/'">홈</button>
+                <button type="button" class="btn btn-primary" onclick="history.back()">뒤로가기</button>
+                <br/>
+                <br/>
+                <!-- 목록 출력 영역 -->
+                <table class="table table-horizontal table-bordered">
+                    <tbody id="tbody">
+                    <tr>
+                        <th>게시글번호</th>
+                        <td>{{boardDetail.boardNo}}</td>
+                    </tr>
+                    <tr>
+                        <th>제목</th>
+                        <td>{{boardDetail.title}}</td>
+                    </tr>
+                    <tr>
+                        <th>작성자</th>
+                        <td>{{boardDetail.writer}}</td>
+                    </tr>
+                    <tr>
+                        <th height="50">내용</th>
+                        <td>{{boardDetail.content}}</td>
+                    </tr>
+
+                    <tr>
+                        <th>최종수정일</th>
+                        <td>{{boardDetail.moddate}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <input type="hidden" id="board-no" value="{{boardDetail.boardNo}}">
             </div>
         </div>
     </div>

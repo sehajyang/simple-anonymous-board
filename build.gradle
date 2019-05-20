@@ -40,5 +40,8 @@ dependencies {
     compile 'org.webjars:bootstrap:4.3.1'
     compile 'org.webjars:font-awesome:5.8.2'
     compile 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.1'
+    // https://mvnrepository.com/artifact/com.github.jknack/handlebars-jackson2
+    compile group: 'com.github.jknack', name: 'handlebars-jackson2', version: '2.3.1'
+
 
 }

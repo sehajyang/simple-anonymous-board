@@ -1,9 +1,15 @@
-Handlebars.registerHelper('each_upto', function(ary, max, options) {
-    if(!ary || ary.length == 0)
-        return options.inverse(this);
-
+Handlebars.registerHelper('each_upto', function(ary) {
     var result = [ ];
-    for(var i = 0; i < max && i < ary.length; ++i)
-        result.push(options.fn(ary[i]));
+    for(var i = 0; i < 5; i++)
+        result.push(ary.get(i));
     return result.join('');
+});
+
+Handlebars.registerHelper('isVowel', function(options) {
+    var regexp = /^[aeiou]/;
+    if (regexp.test(this.name)) {
+        return options.fn(this);
+    } else {
+        return options.inverse(this);
+    }
 });

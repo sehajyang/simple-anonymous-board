@@ -1,7 +1,9 @@
 package com.herren.seha.controller;
 
 import com.herren.seha.biz.board.BoardService;
+import com.herren.seha.dto.boards.BoardsMainResponseDto;
 import com.herren.seha.dto.boards.BoardsSaveRequestDto;
+import com.herren.seha.util.CommonUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+
+import java.util.List;
 
 /**
  * @author seha
@@ -30,8 +34,10 @@ public class AnonyBoardController {
 
     @GetMapping("/lobby")
     public String lobbyPage(Model model) {
-        model.addAttribute("boardList", boardService.getAnonyBoardsLists());
-        model.addAttribute("boardList", boardService.getAnonyBoardsLists());
+        List<BoardsMainResponseDto> boardList = boardService.getAnonyBoardsLists();
+        model.addAttribute("boardList", boardList);
+
+        model.addAttribute("boardListLimit", CommonUtil.makeLimitFiveList(boardList, 5));
         return "lobby";
     }
 

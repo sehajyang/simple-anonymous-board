@@ -7,10 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -47,14 +44,21 @@ public class NoticeBoardController {
         return "notice/editor";
     }
 
+    @GetMapping("/boards/notice/{boardNo}/editor")
+    public String getNoticeBoardsModEditorPage(@PathVariable("boardNo") Long boardNo, Model model){
+        model.addAttribute("boardDetail", boardService.getNoticeBoardsDetail(boardNo));
+        return "notice/modEditor";
+    }
+
+    @ResponseBody
     @PostMapping("boards/notice/{boardNo}")
-    public String modNoticeBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto,
+    public Long modNoticeBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto,
                                   HttpSession session) {
         if(!CommonUtil.checkGradeAndRedirect(session)){
-            return "redirect:/lobby";
+            return 0L;
         }
-
-        return "redirect:/boards/notice" + boardNo;
+        int result = boardService.modNoticeBoards(boardNo, dto.getTitle(), dto.getContent());
+        return (long) result;
     }
 
 

@@ -76,7 +76,9 @@
                         </div>
                         <div class="card-footer">
                             <input type="hidden" id="board-no" value="{{boardDetail.boardNo}}">
-                            <button type="button" class="btn btn-primary btn-sm" id="btn-modify"><i class="fa fa-dot-circle-o"></i>글 수정
+                            <button type="button" class="btn btn-primary btn-sm" id="btn-modify"
+                                    onclick="location.href='/boards/notice/{{boardDetail.boardNo}}/editor'">
+                                <i class="fa fa-dot-circle-o"></i>글 수정
                             </button>
                             <button type="button" class="btn btn-danger btn-sm"
                                     onclick="onclickDelPost('{{boardDetail.boardNo}}')"><i class="fa fa-ban"></i>글 삭제
@@ -88,12 +90,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 </div>
-<script src="/js/app/modify.js"></script>
 <script src="/js/app/delete.js"></script>
 {{> layout/footer}}
 </body>

@@ -60,7 +60,7 @@ public class AnonyBoardController {
     }
 
     @GetMapping("/boards/anony/{boardNo}/editor")
-    public String getnonyBoardsModEditorPage(@PathVariable("boardNo") Long boardNo, Model model){
+    public String getAnonyBoardsModEditorPage(@PathVariable("boardNo") Long boardNo, Model model){
         model.addAttribute("boardDetail", boardService.getAnonyBoardsDetail(boardNo));
         return "anony/modEditor";
     }
@@ -69,8 +69,7 @@ public class AnonyBoardController {
     @PostMapping("/boards/anony/{boardNo}")
     public Long modAnonyBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto) {
         int result = boardService.modAnonyBoards(boardNo, dto.getTitle(), dto.getContent());
-        log.error(result);
-        return 1L;
+        return (long) result;
     }
 
 }

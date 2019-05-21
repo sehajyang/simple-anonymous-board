@@ -32,7 +32,7 @@
                 <div class="col-lg-12">
                     <h1 class="title-1 m-b-35"><b>공지 게시판</b></h1>
                     <input type="hidden" id="board-kind" value="notice">
-                    <button type="button" class="btn btn-primary" onclick="location.href='/boards/notice/editor'">글 등록
+                    <button type="button" class="btn btn-primary" onclick="location.href='/boards/notice/editor';checkGrade('{{grade}}')">글 등록
                     </button>
                     <div class="table-responsive table--no-card m-b-30">
                         <!-- 목록 출력 영역 -->
@@ -70,5 +70,15 @@
 </div>
 {{> layout/footer}}
 <script src="/js/app/write.js"></script>
+<script>
+    function checkGrade(grade){
+        if(grade === '사장'|| grade === '관리자'){
+            return true;
+        }else{
+            alert('권한이 없습니다');
+            return location.href='/boards/notice';
+        }
+    }
+</script>
 </body>
 </html>

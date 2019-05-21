@@ -2,6 +2,7 @@ package com.herren.seha.biz.board;
 
 import com.herren.seha.domain.boards.anony.AnonyBoards;
 import com.herren.seha.domain.boards.anony.AnonyBoardsRepository;
+import com.herren.seha.domain.boards.notice.NoticeBoards;
 import com.herren.seha.domain.boards.notice.NoticeBoardsRepository;
 import com.herren.seha.dto.boards.BoardsMainResponseDto;
 import com.herren.seha.dto.boards.BoardsSaveRequestDto;
@@ -74,5 +75,10 @@ public class BoardService {
     @Transactional
     public int delNoticeBoards(Long boardNo) {
         return noticeBoardsRepository.delBoard(boardNo);
+    }
+
+    @Transactional(readOnly = true)
+    public NoticeBoards getNoticeBoardsDetail(Long boardNo) {
+        return noticeBoardsRepository.getBoardDetail(boardNo);
     }
 }

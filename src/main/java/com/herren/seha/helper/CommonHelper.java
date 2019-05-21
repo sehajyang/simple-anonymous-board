@@ -51,6 +51,14 @@ public class CommonHelper {
         System.err.println("ajdajd"+animalList.get(intVal));
         return String.format("익명의 %s", Objects.firstNonNull(animalList.get(intVal), "unknown"));
     }
+
+    public int noticeBoardGradeCheck(String grade) {
+        if("사장".equals(grade) || "관리자".equals(grade)){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
 }
 
 

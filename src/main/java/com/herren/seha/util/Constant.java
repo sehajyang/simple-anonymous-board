@@ -7,4 +7,5 @@ package com.herren.seha.util;
 public final class Constant {
     public static final String RESULT_SUCCESS = "SUCCESS";
     public static final String RESULT_FAIL = "FAIL";
+    public static final String NOT_CORRECT = "NOT_CORRECT";
 }

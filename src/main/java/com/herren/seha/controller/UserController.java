@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author seha
  * @date 2019-05-15
@@ -32,7 +34,9 @@ public class UserController {
     }
 
     @GetMapping("/logout")
-    public String doLogout(Model model) {
+    public String doLogout(HttpSession session) {
+        session.removeAttribute("ssId");
+        session.invalidate();
         return "redirect:/";
     }
 

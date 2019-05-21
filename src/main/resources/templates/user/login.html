@@ -13,26 +13,24 @@
                         <h2>Login</h2>
                     </div>
                     <div class="login-form">
-                        <form action="" method="post">
-                            <div class="form-group">
-                                <label>ID</label>
-                                <input class="au-input au-input--full" type="text" name="id" placeholder="ID">
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input class="au-input au-input--full" type="password" name="password"
-                                       placeholder="Password">
-                            </div>
-                            <div class="login-checkbox">
-                                <label>
-                                    <input type="checkbox" name="remember">Remember Me
-                                </label>
-                                <label>
-                                    <a href="/forgetpass">비밀번호를 잊으셨나요?</a>
-                                </label>
-                            </div>
-                            <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">로그인</button>
-                        </form>
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input class="au-input au-input--full" type="text" id="id" name="id" placeholder="ID">
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input class="au-input au-input--full" type="password" id="passwd" name="passwd"
+                                   placeholder="Password">
+                        </div>
+                        <div class="login-checkbox">
+                            <label>
+                                <input type="checkbox" name="remember">Remember Me
+                            </label>
+                            <label>
+                                <a href="/forgetpass">비밀번호를 잊으셨나요?</a>
+                            </label>
+                        </div>
+                        <button class="au-btn au-btn--block au-btn--green m-b-20" id="btn-login">로그인</button>
                         <div class="register-link">
                             <p>
                                 계정이 없으신가요?
@@ -46,6 +44,8 @@
     </div>
 </div>
 {{> layout/footer}}
+<script src="/js/app/login.js"></script>
+
 </body>
 </html>
 <!-- end document-->

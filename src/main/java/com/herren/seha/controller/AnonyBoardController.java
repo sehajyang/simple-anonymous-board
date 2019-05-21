@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -34,11 +35,12 @@ public class AnonyBoardController {
     }
 
     @GetMapping("/lobby")
-    public String lobbyPage(Model model) {
+    public String lobbyPage(Model model, HttpSession session) {
         List<BoardsMainResponseDto> boardList = boardService.getAnonyBoardsLists();
         List<NoticeBoardsMainResponseDto> noticeBoardList = boardService.getNoticeBoardsLists();
         model.addAttribute("boardList", CommonUtil.makeLimitListForNotice(noticeBoardList, 10));
         model.addAttribute("boardListLimit", CommonUtil.makeLimitList(boardList, 5));
+        model.addAttribute("ssId", session.getAttribute("ssId"));
         return "lobby";
     }
 

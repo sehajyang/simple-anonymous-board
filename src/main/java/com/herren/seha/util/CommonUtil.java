@@ -3,6 +3,7 @@ package com.herren.seha.util;
 import com.herren.seha.dto.boards.BoardsMainResponseDto;
 import com.herren.seha.dto.boards.NoticeBoardsMainResponseDto;
 
+import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -34,6 +35,14 @@ public class CommonUtil {
             resultList.add(list.get(i));
         }
         return resultList;
+    }
+
+    public static Boolean checkGradeAndRedirect(HttpSession session){
+        String grade = (String)session.getAttribute("grade");
+        if(!"사장".equals(grade)){
+            return false;
+        }
+        return true;
     }
 
     /**

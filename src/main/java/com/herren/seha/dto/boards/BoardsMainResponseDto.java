@@ -17,6 +17,8 @@ public class BoardsMainResponseDto {
     private String passwd;
     private String writer;
     private String content;
+    private String category;
+    private String sendyn;
     private String moddate;
 
     public BoardsMainResponseDto(AnonyBoards entity) {
@@ -25,6 +27,8 @@ public class BoardsMainResponseDto {
         passwd = entity.getPasswd();
         writer = entity.getWriter();
         content = entity.getContent();
+        category = entity.getCategory();
+        sendyn = entity.getSendyn();
         moddate = toStringDateTime(entity.getModdate());
     }
 

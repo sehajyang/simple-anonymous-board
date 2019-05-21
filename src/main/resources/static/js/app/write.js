@@ -6,12 +6,24 @@ var main = {
         });
     },
     save: function () {
-        var data = {
-            title: $('#title').val(),
-            passwd: $('#passwd').val(),
-            writer: $('#writer').val(),
-            content: $('#content').val()
-        };
+        var data;
+        if($('#board-kind').val() === 'anony'){
+            data = {
+                title: $('#title').val(),
+                passwd: $('#passwd').val(),
+                writer: $('#writer').val(),
+                content: $('#content').val(),
+                category : $('#category').val(),
+                sendyn : $('#sendyn').val()
+            };
+        }else{
+            data = {
+                title: $('#title').val(),
+                passwd: $('#passwd').val(),
+                writer: $('#writer').val(),
+                content: $('#content').val()
+            };
+        }
 
         $.ajax({
             type: 'POST',
@@ -39,6 +51,7 @@ var join = {
         });
     },
     save: function () {
+
         var userData = {
             id : $('#id').val(),
             passwd : $('#passwd').val()

@@ -46,8 +46,8 @@ public class BoardService {
     }
 
     @Transactional
-    public int modAnonyBoards(Long boardNo, String title, String content) {
-        return anonyBoardsRepository.modBoard(boardNo, title, content);
+    public int modAnonyBoards(Long boardNo, String title, String content, String category, String sendyn) {
+        return anonyBoardsRepository.modBoard(boardNo, title, content, category, sendyn);
     }
 
     @Transactional

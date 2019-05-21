@@ -6,12 +6,24 @@ var main = {
         });
     },
     save: function () {
-        var data = {
-            title: $('#title').val(),
-            passwd: $('#passwd').val(),
-            writer: $('#writer').val(),
-            content: $('#content').val()
-        };
+        var data;
+        if($('#board-kind').val() === 'anony'){
+            data = {
+                title: $('#title').val(),
+                passwd: $('#passwd').val(),
+                writer: $('#writer').val(),
+                content: $('#content').val(),
+                category: $('#category').val(),
+                sendyn: $('#sendyn').val()
+            };
+        }else{
+            data = {
+                title: $('#title').val(),
+                passwd: $('#passwd').val(),
+                writer: $('#writer').val(),
+                content: $('#content').val()
+            };
+        }
 
         $.ajax({
             type: 'POST',
@@ -21,7 +33,7 @@ var main = {
             data: JSON.stringify(data)
         }).done(function () {
             alert('글이 수정되었습니다.');
-            location.href='/boards/'+$('#board-kind').val()+'/'+ $('#board-no').val();
+            location.href = '/boards/' + $('#board-kind').val() + '/' + $('#board-no').val();
         }).fail(function (error) {
             console.log(error);
         });

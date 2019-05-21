@@ -68,7 +68,7 @@ public class AnonyBoardController {
     @ResponseBody
     @PostMapping("/boards/anony/{boardNo}")
     public Long modAnonyBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto) {
-        int result = boardService.modAnonyBoards(boardNo, dto.getTitle(), dto.getContent());
+        int result = boardService.modAnonyBoards(boardNo, dto.getTitle(), dto.getContent(), dto.getCategory(), dto.getSendyn());
         return (long) result;
     }
 

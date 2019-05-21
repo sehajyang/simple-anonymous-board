@@ -76,20 +76,20 @@
                                         <label for="content" class=" form-control-label">내용</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                        <textarea name="textarea-input" id="content" rows="9" placeholder="{{boardDetail.content}}"
-                                  class="form-control"></textarea>
+                        <textarea name="textarea-input" id="content" rows="9"
+                                  class="form-control">{{boardDetail.content}}</textarea>
                                     </div>
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="select" class=" form-control-label">Category</label>
+                                        <label for="category" class=" form-control-label">Category</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <select name="select" id="select" class="form-control">
+                                        <select name="select" id="category" class="form-control">
                                             <option>선택해주세요</option>
-                                            <option value="1">건의사항</option>
-                                            <option value="2">불편사항</option>
-                                            <option value="3">자유 글</option>
+                                            <option value="건의사항">건의사항</option>
+                                            <option value="불편사항">불편사항</option>
+                                            <option value="자유 글">자유 글</option>
                                         </select>
                                     </div>
                                 </div>
@@ -100,9 +100,9 @@
                                     </div>
                                     <div class="col col-md-9">
                                         <div class="form-check-inline form-check">
-                                            <label for="inline-radio1" class="form-check-label ">
-                                                <input type="radio" id="inline-radio1" name="inline-radios"
-                                                       value="option1"
+                                            <label for="sendyn" class="form-check-label ">
+                                                <input type="radio" id="sendyn" name="inline-radios"
+                                                       value="Y"
                                                        class="form-check-input">네&nbsp;
                                             </label>
                                             <label for="inline-radio2" class="form-check-label ">

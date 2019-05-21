@@ -33,12 +33,19 @@ public class AnonyBoards extends BaseTimeEntity {
 
     private Integer hit;
 
+    private String category;
+
+    private String sendyn;
+
     @Builder
-    public AnonyBoards(String title, String passwd, String writer, String content) {
+    public AnonyBoards(String title, String passwd, String writer, String content, int hit, String category, String sendyn) {
         this.title = title;
         this.passwd = passwd;
         this.writer = writer;
         this.content = content;
+        this.hit = hit;
+        this.category = category;
+        this.sendyn = sendyn;
     }
 
 }

@@ -60,7 +60,7 @@
                                     <label class=" form-control-label">카테고리</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    미정
+                                    {{boardDetail.category}}
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -84,7 +84,7 @@
                                     onclick="onclickDelPost('{{boardDetail.boardNo}}')"><i class="fa fa-ban"></i>글 삭제
                             </button>
                             <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='/lobby'"><i class="fa fa-home"></i>홈</button>
-                            <button type="button" class="btn btn-success btn-sm" onclick="history.back()"><i class="fa fa-react"></i>뒤로가기</button>
+                            <button type="button" class="btn btn-success btn-sm" onclick="location.href='/boards/anony'"><i class="fa fa-arrow-left"></i>목록으로</button>
                             <label style="float: right;">최종 수정일 {{boardDetail.moddate}}</label>
                         </div>
                     </div>

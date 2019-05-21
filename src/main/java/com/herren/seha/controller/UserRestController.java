@@ -50,10 +50,15 @@ public class UserRestController {
     @PostMapping("/register")
     public Long doRegister(@RequestBody UserSaveRequestDto dto) {
         dto.setGrade("사원");
-        if(userService.regUserData(dto) > 0){
-            return 1L;
-        }else{
+
+        if(userService.getUsersById(dto.getId()) != null){
             return 0L;
+        }else{
+            if(userService.regUserData(dto) > 0){
+                return 1L;
+            }else{
+                return 0L;
+            }
         }
     }
 }

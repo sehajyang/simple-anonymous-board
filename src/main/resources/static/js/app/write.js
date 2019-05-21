@@ -30,3 +30,34 @@ var main = {
 };
 
 main.init();
+
+var join = {
+    init: function () {
+        var _this = this;
+        $('#btn-join').on('click', function () {
+            _this.save();
+        });
+    },
+    save: function () {
+        var userData = {
+            id : $('#id').val(),
+            passwd : $('#passwd').val()
+        };
+
+        $.ajax({
+            type: 'POST',
+            url: '/register',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(userData)
+        }).done(function () {
+            alert('회원가입이 완료되었습니다. 로그인 해주세요');
+            location.href= '/login'
+        }).fail(function (error){
+            alert('회원가입에 실패했습니다 재시도 해주세요. 만약 문제가 반복되면 개발팀 세하에게 알려주세요');
+            console.log(error);
+        });
+    }
+};
+
+join.init();

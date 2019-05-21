@@ -1,6 +1,6 @@
 package com.herren.seha.dto.user;
 
-import com.herren.seha.domain.user.User;
+import com.herren.seha.domain.user.Users;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,17 +17,20 @@ public class UserSaveRequestDto {
 
     private String id;
     private String passwd;
+    private String grade;
 
     @Builder
-    public UserSaveRequestDto(String id, String passwd) {
+    public UserSaveRequestDto(String id, String passwd, String grade) {
         this.id = id;
         this.passwd = passwd;
+        this.grade = grade;
     }
 //FIXME : grade 넣을것
-    public User toEntity(){
-        return User.builder()
+    public Users toEntity(){
+        return Users.builder()
                 .id(id)
                 .passwd(passwd)
+                .grade(grade)
                 .build();
     }
 }

@@ -1,6 +1,6 @@
 package com.herren.seha.dto.user;
 
-import com.herren.seha.domain.user.User;
+import com.herren.seha.domain.user.Users;
 import com.herren.seha.util.CommonUtil;
 import lombok.Getter;
 
@@ -13,13 +13,15 @@ public class UserMainResponseDto {
     private Long userNo;
     private String id;
     private String passwd;
+    private String grade;
     private String moddate;
 
-    public UserMainResponseDto(User user) {
-        userNo = user.getUserNo();
-        id = user.getId();
-        passwd = user.getPasswd();
-        moddate = CommonUtil.toStringDateTime(user.getModdate());
+    public UserMainResponseDto(Users users) {
+        userNo = users.getUserNo();
+        id = users.getId();
+        passwd = users.getPasswd();
+        grade = users.getGrade();
+        moddate = CommonUtil.toStringDateTime(users.getModdate());
     }
 
 }

@@ -21,9 +21,9 @@ var main = {
             data: JSON.stringify(data)
         }).done(function () {
             alert('글이 수정되었습니다.');
-            location.reload();
+            location.href='/boards/'+$('#board-kind').val()+'/'+ $('#board-no').val();
         }).fail(function (error) {
-            location.reload();
+            console.log(error);
         });
     }
 

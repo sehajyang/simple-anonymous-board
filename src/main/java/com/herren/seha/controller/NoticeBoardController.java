@@ -54,7 +54,6 @@ public class NoticeBoardController {
             return "redirect:/lobby";
         }
 
-        int result = boardService.modAnonyBoards(boardNo, dto.getTitle(), dto.getContent());
         return "redirect:/boards/notice" + boardNo;
     }
 

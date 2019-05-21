@@ -9,10 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -58,15 +55,22 @@ public class AnonyBoardController {
     }
 
     @GetMapping("/boards/anony/editor")
-    public String getAnonyBoardsEditor() {
+    public String getAnonyBoardsEditorPage() {
         return "anony/editor";
     }
 
-    @PostMapping("boards/anony/{boardNo}")
-    public String modAnonyBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto) {
-        int result = boardService.modAnonyBoards(boardNo, dto.getTitle(), dto.getContent());
-        return "redirect:/boards/anony" + boardNo;
+    @GetMapping("/boards/anony/{boardNo}/editor")
+    public String getnonyBoardsModEditorPage(@PathVariable("boardNo") Long boardNo, Model model){
+        model.addAttribute("boardDetail", boardService.getAnonyBoardsDetail(boardNo));
+        return "anony/modEditor";
     }
 
+    @ResponseBody
+    @PostMapping("/boards/anony/{boardNo}")
+    public Long modAnonyBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto) {
+        int result = boardService.modAnonyBoards(boardNo, dto.getTitle(), dto.getContent());
+        log.error(result);
+        return 1L;
+    }
 
 }

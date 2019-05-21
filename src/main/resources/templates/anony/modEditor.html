@@ -1,0 +1,138 @@
+{{> layout/header}}
+<style>
+    #page-title-text {
+        padding-top: 50px;
+        padding-bottom: 10px;
+    }
+
+    .col-lg-9 {
+        padding-left: 10%;
+        padding-bottom: 3%;
+    }
+</style>
+{{> layout/sidebar}}
+<div class="page-container">
+    <div class="main-container">
+        <div class="section__content section__content--p30">
+            <div class="container-fluid">
+            </div>
+            <div class="row">
+                <div class="col-lg-9">
+                    <div id="page-title-text">
+                        <h1>Herren Anonymous Board</h1>
+                        <input type="hidden" id="board-kind" value="anony">
+                        <hr>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <strong>익명게시판 </strong> 글 작성
+                        </div>
+                        <!-- START CARD EDITOR -->
+                        <div class="card-body card-block">
+                            <form action="" method="post" class="form-horizontal">
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="writer" class=" form-control-label">작성자</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="board-no" name="disabled-input"
+                                               disabled=""
+                                               class="form-control"
+                                               value="{{boardDetail.boardNo}}">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="writer" class=" form-control-label">작성자</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="writer" name="disabled-input"
+                                               disabled=""
+                                               class="form-control"
+                                               value="{{boardDetail.writer}}">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="passwd" class=" form-control-label">Password</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="password" id="passwd" name="passwd" placeholder="비밀번호를 입력해주세요"
+                                               class="form-control" value="{{boardDetail.passwd}}">
+                                        <small class="form-text text-muted">비밀번호는 암호화됩니다</small>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="title" class=" form-control-label">글 제목</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <input type="text" id="title" name="title" value={{boardDetail.title}}
+                                               class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="content" class=" form-control-label">내용</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                        <textarea name="textarea-input" id="content" rows="9" placeholder="{{boardDetail.content}}"
+                                  class="form-control"></textarea>
+                                    </div>
+                                </div>
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label for="select" class=" form-control-label">Category</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                        <select name="select" id="select" class="form-control">
+                                            <option>선택해주세요</option>
+                                            <option value="1">건의사항</option>
+                                            <option value="2">불편사항</option>
+                                            <option value="3">자유 글</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <!-- START RADIO BOX -->
+                                <div class="row form-group">
+                                    <div class="col col-md-3">
+                                        <label class=" form-control-label">알림 발송 여부</label>
+                                    </div>
+                                    <div class="col col-md-9">
+                                        <div class="form-check-inline form-check">
+                                            <label for="inline-radio1" class="form-check-label ">
+                                                <input type="radio" id="inline-radio1" name="inline-radios"
+                                                       value="option1"
+                                                       class="form-check-input">네&nbsp;
+                                            </label>
+                                            <label for="inline-radio2" class="form-check-label ">
+                                                <input type="radio" id="inline-radio2" name="inline-radios"
+                                                       value="option2"
+                                                       class="form-check-input">아니오
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- END RADIO BOX -->
+                        <div class="card-footer">
+                            <button id="btn-modify" class="btn btn-success btn-sm">
+                                <i class="fa fa-dot-circle-o"></i> Submit
+                            </button>
+                            <button type="reset" class="btn btn-danger btn-sm">
+                                <i class="fa fa-ban"></i> Reset
+                            </button>
+                        </div>
+                        <!-- END CARD EDITOR -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{{> layout/footer}}
+<script src="/js/app/modify.js"></script>
+</body>
+</html>

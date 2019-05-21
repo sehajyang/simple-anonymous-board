@@ -22,12 +22,12 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String registerPage(Model model) {
+    public String registerPage() {
         return "user/register";
     }
 
     @GetMapping("/forgetpass")
-    public String forgetpassPage(Model model) {
+    public String forgetpassPage() {
         return "user/forget-pass";
     }
 

@@ -4,11 +4,11 @@ import com.herren.seha.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
 
 /**
  * @author seha
@@ -22,10 +22,10 @@ public class Users extends BaseTimeEntity {
     @GeneratedValue
     private Long userNo;
 
-    @NonNull
+    @NotEmpty
     private String id;
 
-    @NonNull
+    @NotEmpty
     private String passwd;
 
     private String grade;

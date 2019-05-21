@@ -1,5 +1,4 @@
 {{> layout/header}}
-
 <body class="animsition">
 <div class="page-wrapper">
     <div class="page-content--bge5">
@@ -13,24 +12,22 @@
                         <h2>JOIN US!</h2>
                     </div>
                     <div class="login-form">
-                        <div class="form-group">
-                            <label>ID</label>
-                            <input class="au-input au-input--full" id="id" type="text" name="id" placeholder="ID">
-                        </div>
-                        <div class="form-group">
-                            <label>Password</label>
-                            <input class="au-input au-input--full" type="password" id="passwd" name="passwd"
-                                   placeholder="Password">
-                        </div>
-                        <div class="login-checkbox">
-                            <label>
-                                <input type="checkbox" name="aggree">이용약관 동의
-                            </label>
-                        </div>
-                        <button id="btn-join" class="au-btn au-btn--block au-btn--green m-b-20">
-                            회원 등록
-                        </button>
-                        <button class="au-btn au-btn--block au-btn--red m-b-20" type="reset">취소</button>
+                        <form>
+                            <div class="form-group">
+                                <label>ID</label>
+                                <input class="au-input au-input--full" id="id" type="text" name="id" placeholder="ID">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input class="au-input au-input--full" type="password" id="passwd" name="passwd"
+                                       placeholder="Password">
+                                <small> 아이디 및 비밀번호는 암호화됩니다(개발자도 볼 수 없음)</small>
+                            </div>
+                            <button id="btn-join" class="au-btn au-btn--block au-btn--green m-b-20">
+                                회원 등록
+                            </button>
+                            <button class="au-btn au-btn--block au-btn--red m-b-20" type="reset">초기화</button>
+                        </form>
                         <div class="register-link">
                             <p>
                                 이미 계정이 있습니까?

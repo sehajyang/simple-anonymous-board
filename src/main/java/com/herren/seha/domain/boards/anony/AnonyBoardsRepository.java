@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
+import java.time.LocalDateTime;
 import java.util.stream.Stream;
 
 /**
@@ -67,4 +67,9 @@ public interface AnonyBoardsRepository extends JpaRepository<AnonyBoards, Long> 
             "SET b.sendyn = :yn " +
             "WHERE b.boardNo = :boardNo")
     int modAnonyBoardsSetSendYn(@Param("boardNo")Long boardNo, @Param("yn")String yn);
+
+    @Query("SELECT count(b) " +
+            "FROM AnonyBoards b " +
+            "WHERE b.regdate > :currentDate")
+    int getTodaysNewAnonyPostCount(@Param("currentDate") LocalDateTime currentDate);
 }

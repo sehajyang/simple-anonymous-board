@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -108,5 +109,10 @@ public class BoardService {
     @Transactional
     public int modAnonyBoardsSetSendYn(Long boardNo, String yn) {
         return anonyBoardsRepository.modAnonyBoardsSetSendYn(boardNo, yn);
+    }
+
+    @Transactional
+    public int getTodaysNewAnonyPostCount(LocalDateTime currentDate) {
+        return anonyBoardsRepository.getTodaysNewAnonyPostCount(currentDate);
     }
 }

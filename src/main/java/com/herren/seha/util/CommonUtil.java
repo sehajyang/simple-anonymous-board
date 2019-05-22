@@ -7,9 +7,11 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpSession;
 import java.nio.charset.Charset;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -70,5 +72,18 @@ public class CommonUtil {
         } finally {
             restTemplate = null;
         }
+    }
+
+    public static int getTodayyyyyMMdd(String kind) {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat();
+        if ("year".equals(kind)) {
+            sdf = new SimpleDateFormat("yyyy");
+        } else if ("month".equals(kind)) {
+            sdf = new SimpleDateFormat("MM");
+        } else if ("day".equals(kind)) {
+            sdf = new SimpleDateFormat("dd");
+        }
+        return Integer.parseInt(sdf.format(date));
     }
 }

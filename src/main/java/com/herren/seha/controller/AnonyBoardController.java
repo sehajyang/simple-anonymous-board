@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -37,9 +38,17 @@ public class AnonyBoardController {
         List<NoticeBoardsMainResponseDto> noticeBoardList = boardService.getNoticeBoardsLists();
         List<BoardsMainResponseDto> anonyBoardListLikeTop5 = boardService.getAnonyBoardsLikeTop5Lists();
 
+        int todaysNewAnonyPostCount = boardService.getTodaysNewAnonyPostCount(LocalDateTime.of
+                (CommonUtil.getTodayyyyyMMdd("year"), CommonUtil.getTodayyyyyMMdd("month"), CommonUtil.getTodayyyyyMMdd("day"),
+                        00, 00, 00));
+
+
+        model.addAttribute("anonyBoardTotalCount",boardList.size());
+        model.addAttribute("noticeBoardTotalCount",noticeBoardList.size());
         model.addAttribute("boardList", CommonUtil.makeLimitListForNotice(noticeBoardList, 10));
         model.addAttribute("boardListLimit", CommonUtil.makeLimitList(boardList, 5));
         model.addAttribute("anonyBoardListLikeTop5", anonyBoardListLikeTop5);
+        model.addAttribute("todaysNewAnonyPostCount", todaysNewAnonyPostCount);
 
         model.addAttribute("ssId", session.getAttribute("ssId"));
 
@@ -65,7 +74,7 @@ public class AnonyBoardController {
     }
 
     @GetMapping("/boards/anony/{boardNo}/editor")
-    public String getAnonyBoardsModEditorPage(@PathVariable("boardNo") Long boardNo, Model model){
+    public String getAnonyBoardsModEditorPage(@PathVariable("boardNo") Long boardNo, Model model) {
         model.addAttribute("boardDetail", boardService.getAnonyBoardsDetail(boardNo));
         return "anony/modEditor";
     }

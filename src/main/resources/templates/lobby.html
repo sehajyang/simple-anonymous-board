@@ -17,172 +17,172 @@
             padding-bottom: 50px;
         }
 
-        .campaign-small-text{
-            float:right;
-            padding-top:17px;
+        .campaign-small-text {
+            float: right;
+            padding-top: 17px;
         }
     </style>
 </head>
 {{> layout/sidebar}}
-    <div class="page-container">
-        <div class="section__content section__content--p30">
-            <!-- STATISTIC-->
-            <section class="statistic statistic2">
-                <div class="container">
-                    <h1>Herren Anonymous Board</h1>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-3">
-                            <div class="statistic__item statistic__item--green">
-                                <h2 class="number">3</h2>
-                                <span class="desc">오늘 등록된 게시글</span>
-                                <div class="icon">
-                                    <i class="zmdi zmdi-account-o"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="statistic__item statistic__item--orange">
-                                <h2 class="number">4</h2>
-                                <span class="desc">새로 등록된 제안</span>
-                                <div class="icon">
-                                    <i class="zmdi zmdi-shopping-cart"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="statistic__item statistic__item--blue">
-                                <h2 class="number">12</h2>
-                                <span class="desc">이번 주</span>
-                                <div class="icon">
-                                    <i class="zmdi zmdi-calendar-note"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6 col-lg-3">
-                            <div class="statistic__item statistic__item--red">
-                                <h2 class="number">19</h2>
-                                <span class="desc">총 게시글</span>
-                                <div class="icon">
-                                    <i class="zmdi zmdi-money"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END STATISTIC-->
-
-            <!-- STATISTIC CHART-->
-            <section class="statistic-chart">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h3 class="title-5 m-b-35">statistics</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 col-lg-4">
-                            <!-- CHART-->
-                            <div class="statistic-chart-1">
-                                <h3 class="title-3 m-b-30">방문자 수</h3>
-                                <div class="chart-wrap">
-                                    <canvas id="widgetChart5"></canvas>
-                                </div>
-                                <div class="statistic-chart-1-note">
-                                    <span class="big">10</span>
-                                    <span>/ 162</span>
-                                </div>
-                            </div>
-                            <!-- END CHART-->
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <!-- TOP CAMPAIGN-->
-                            <div class="top-campaign">
-                                <h3 class="title-3 m-b-30">추천 TOP 5</h3>
-                                <div class="table-responsive">
-                                    <table class="table table-top-campaign">
-                                        <tbody>
-                                        {{#each anonyBoardListLikeTop5}}
-                                        <tr onclick="location.href='/boards/anony/{{boardNo}}'">
-                                            <td>{{boardNo}}.&nbsp;{{title}}</td>
-                                            <td class="text-right">{{hit}}</td>
-                                        </tr>
-                                        {{/each}}
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <small class="campaign-small-text">발송처리된 글은 추천리스트에서 사라집니다</small>
-                            </div>
-
-                            <!-- END TOP CAMPAIGN-->
-                        </div>
-                        <div class="col-md-6 col-lg-4">
-                            <!-- CHART PERCENT-->
-                            <div class="chart-percent-2">
-                                <h3 class="title-3 m-b-30">카테고리</h3>
-                                <div class="chart-wrap">
-                                    <canvas id="percent-chart"></canvas>
-                                    <div id="chartjs-tooltip">
-                                        <table></table>
-                                    </div>
-                                </div>
-                                <div class="chart-info">
-                                    <div class="chart-note">
-                                        <span class="dot dot--blue"></span>
-                                        <span>건의사항</span>
-                                    </div>
-                                    <div class="chart-note">
-                                        <span class="dot dot--red"></span>
-                                        <span>불편사항</span>
-                                    </div>
-                                    <div class="chart-note">
-                                        <span class="dot dot--green"></span>
-                                        <span>자유 글</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- END CHART PERCENT-->
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- END STATISTIC CHART-->
-
-            <!-- START BOARD TABLE-->
+<div class="page-container">
+    <div class="section__content section__content--p30">
+        <!-- STATISTIC-->
+        <section class="statistic statistic2">
             <div class="container">
-                <h3 class="title-5 m-b-35"><b>공지 게시판</b></h3>
-                <div class="col-lg-12">
-                    <div class="table-responsive table--no-card m-b-30">
-                        <!-- 목록 출력 영역 -->
-                        <table class="table table-borderless table-striped table-earning" id="board-table">
-                            <thead class="thead-strong">
-                            <tr>
-                                <th>게시글번호</th>
-                                <th>제목</th>
-                                <th>작성자</th>
-                                <th class="text-right">추천</th>
-                                <th class="text-right">최종수정일</th>
-                            </tr>
-                            </thead>
-                            <tbody id="tbody">
-                            {{#each boardList}}
-                            <tr onclick="location.href='/boards/notice/{{boardNo}}'">
-                                <td>{{boardNo}}</td>
-                                <td width="40%">{{title}}</td>
-                                <td>{{writer}}</td>
-                                <td class="text-right">0</td>
-                                <td class="text-right">{{moddate}}</td>
-                            </tr>
-                            {{/each}}
-                            </tbody>
-                        </table>
+                <h1>Herren Anonymous Board</h1>
+                <hr>
+                <div class="row">
+                    <div class="col-md-6 col-lg-3">
+                        <div class="statistic__item statistic__item--green" onclick="location.href='/boards/anony'">
+                            <h2 class="number">{{todaysNewAnonyPostCount}}</h2>
+                            <span class="desc">오늘 등록된 게시글</span>
+                            <div class="icon">
+                                <i class="zmdi zmdi-account-o"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="statistic__item statistic__item--orange">
+                            <h2 class="number">4</h2>
+                            <span class="desc">새로 등록된 제안</span>
+                            <div class="icon">
+                                <i class="zmdi zmdi-shopping-cart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="statistic__item statistic__item--blue">
+                            <h2 class="number">{{noticeBoardTotalCount}}</h2>
+                            <span class="desc">오늘 등록된 공지</span>
+                            <div class="icon">
+                                <i class="zmdi zmdi-calendar-note"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <div class="statistic__item statistic__item--red" onclick="location.href='/boards/anony'">
+                            <h2 class="number">{{anonyBoardTotalCount}}</h2>
+                            <span class="desc">총 익명게시글</span>
+                            <div class="icon">
+                                <i class="zmdi zmdi-money"></i>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- END BOARD TABLE-->
+        </section>
+        <!-- END STATISTIC-->
+
+        <!-- STATISTIC CHART-->
+        <section class="statistic-chart">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 class="title-5 m-b-35">statistics</h3>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-lg-4">
+                        <!-- CHART-->
+                        <div class="statistic-chart-1">
+                            <h3 class="title-3 m-b-30">방문자 수</h3>
+                            <div class="chart-wrap">
+                                <canvas id="widgetChart5"></canvas>
+                            </div>
+                            <div class="statistic-chart-1-note">
+                                <span class="big">10</span>
+                                <span>/ 162</span>
+                            </div>
+                        </div>
+                        <!-- END CHART-->
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <!-- TOP CAMPAIGN-->
+                        <div class="top-campaign">
+                            <h3 class="title-3 m-b-30">추천 TOP 5</h3>
+                            <div class="table-responsive">
+                                <table class="table table-top-campaign">
+                                    <tbody>
+                                    {{#each anonyBoardListLikeTop5}}
+                                    <tr onclick="location.href='/boards/anony/{{boardNo}}'">
+                                        <td>{{boardNo}}.&nbsp;{{title}}</td>
+                                        <td class="text-right">{{hit}}</td>
+                                    </tr>
+                                    {{/each}}
+                                    </tbody>
+                                </table>
+                            </div>
+                            <small class="campaign-small-text">발송처리된 글은 추천리스트에서 사라집니다</small>
+                        </div>
+
+                        <!-- END TOP CAMPAIGN-->
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <!-- CHART PERCENT-->
+                        <div class="chart-percent-2">
+                            <h3 class="title-3 m-b-30">카테고리</h3>
+                            <div class="chart-wrap">
+                                <canvas id="percent-chart"></canvas>
+                                <div id="chartjs-tooltip">
+                                    <table></table>
+                                </div>
+                            </div>
+                            <div class="chart-info">
+                                <div class="chart-note">
+                                    <span class="dot dot--blue"></span>
+                                    <span>건의사항</span>
+                                </div>
+                                <div class="chart-note">
+                                    <span class="dot dot--red"></span>
+                                    <span>불편사항</span>
+                                </div>
+                                <div class="chart-note">
+                                    <span class="dot dot--green"></span>
+                                    <span>자유 글</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END CHART PERCENT-->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- END STATISTIC CHART-->
+
+        <!-- START BOARD TABLE-->
+        <div class="container">
+            <h3 class="title-5 m-b-35"><b>공지 게시판</b></h3>
+            <div class="col-lg-12">
+                <div class="table-responsive table--no-card m-b-30">
+                    <!-- 목록 출력 영역 -->
+                    <table class="table table-borderless table-striped table-earning" id="board-table">
+                        <thead class="thead-strong">
+                        <tr>
+                            <th>게시글번호</th>
+                            <th>제목</th>
+                            <th>작성자</th>
+                            <th class="text-right">추천</th>
+                            <th class="text-right">최종수정일</th>
+                        </tr>
+                        </thead>
+                        <tbody id="tbody">
+                        {{#each boardList}}
+                        <tr onclick="location.href='/boards/notice/{{boardNo}}'">
+                            <td>{{boardNo}}</td>
+                            <td width="40%">{{title}}</td>
+                            <td>{{writer}}</td>
+                            <td class="text-right">0</td>
+                            <td class="text-right">{{moddate}}</td>
+                        </tr>
+                        {{/each}}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+        <!-- END BOARD TABLE-->
     </div>
+</div>
 </div>
 
 {{> layout/footer}}

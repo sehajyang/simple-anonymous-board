@@ -38,7 +38,7 @@ public class AnonyBoards extends BaseTimeEntity {
     private String sendyn;
 
     @Builder
-    public AnonyBoards(String title, String passwd, String writer, String content, int hit, String category, String sendyn) {
+    public AnonyBoards(String title, String passwd, String writer, String content, Integer hit, String category, String sendyn) {
         this.title = title;
         this.passwd = passwd;
         this.writer = writer;

@@ -86,4 +86,14 @@ public class BoardService {
     public String getBoardsCheckPasswd(Long boardNo, String passwd) {
         return anonyBoardsRepository.getBoardsCheckPasswd(boardNo, passwd);
     }
+
+    @Transactional
+    public int doBoardsLikeCountPlus(Long boardNo) {
+        return anonyBoardsRepository.doBoardsLikeCountPlus(boardNo);
+    }
+
+    @Transactional(readOnly = true)
+    public int getBoardsNowLikeCount(Long boardNo) {
+        return anonyBoardsRepository.getBoardsNowLikeCount(boardNo);
+    }
 }

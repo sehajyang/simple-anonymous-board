@@ -18,6 +18,7 @@ public class BoardsMainResponseDto {
     private String writer;
     private String content;
     private String category;
+    private Integer hit;
     private String sendyn;
     private String moddate;
 
@@ -28,6 +29,7 @@ public class BoardsMainResponseDto {
         writer = entity.getWriter();
         content = entity.getContent();
         category = entity.getCategory();
+        hit = entity.getHit();
         sendyn = entity.getSendyn();
         moddate = toStringDateTime(entity.getModdate());
     }

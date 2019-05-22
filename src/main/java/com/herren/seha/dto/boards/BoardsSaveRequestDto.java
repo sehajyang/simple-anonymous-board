@@ -21,25 +21,29 @@ public class BoardsSaveRequestDto {
     private String passwd;
     private String writer;
     private String category;
+    private Integer hit;
     private String sendyn;
 
     @Builder
-    public BoardsSaveRequestDto(String title, String content, String passwd, String writer, String category, String sendyn) {
+    public BoardsSaveRequestDto(String title, String content, String passwd, String writer,
+                                String category, Integer hit, String sendyn) {
         this.title = title;
         this.content = content;
         this.passwd = passwd;
         this.writer = writer;
         this.category = category;
+        this.hit = 0;
         this.sendyn = sendyn;
     }
 
-    public AnonyBoards toEntity(){
+    public AnonyBoards toEntity() {
         return AnonyBoards.builder()
                 .title(title)
                 .content(content)
                 .passwd(passwd)
                 .writer(writer)
                 .category(category)
+                .hit(0)
                 .sendyn(sendyn)
                 .build();
     }

@@ -6,7 +6,10 @@ import com.herren.seha.util.Constant;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author seha
@@ -40,7 +43,6 @@ public class AnonyBoardRestController {
 
     @PostMapping("/boards/anony/{boardNo}/checkpwd")
     public Long getBoardsCheckPasswd(@PathVariable("boardNo") Long boardNo, String passwd) {
-        log.error("paswd"+passwd);
         String getDbPasswd = boardService.getBoardsCheckPasswd(boardNo, passwd);
         if (passwd != null) {
             if (passwd.equals(getDbPasswd)) {
@@ -48,5 +50,11 @@ public class AnonyBoardRestController {
             }
         }
         return 0L;
+    }
+
+    @PostMapping("/boards/anony/{boardNo}/like")
+    public int doBoardsLikeCountPlus(@PathVariable("boardNo") Long boardNo){
+        boardService.doBoardsLikeCountPlus(boardNo);
+        return boardService.getBoardsNowLikeCount(boardNo);
     }
 }

@@ -135,7 +135,7 @@
                                          class="thumb-up-img " style="padding-bottom: 10px;"
                                          onclick="onclickPlusLike('{{ssId}}')"/>
                                     <div class="like-text">이 글을 추천</div>
-                                    <div class="like-count"><b style="color:#548cfc;">14</b></div>
+                                    <div class="like-count"><b id="like" style="color:#548cfc;">{{boardDetail.hit}}</b></div>
                                 </div>
                             </div>
                             <!-- 목록출력 영역 END -->
@@ -205,7 +205,17 @@
 {{> layout/footer}}
 <script>
     function onclickPlusLike(ssId) {
-        console.log('추천되었습니다');
+        $.ajax({
+            type: 'POST',
+            url: '/boards/anony/' + $('#board-no').val() + '/like',
+            data: {
+                id: ssId
+            },
+            success: function (data) {
+                alert('추천되었습니다.');
+                $('#like').text('').text(data);
+            }
+        });
     }
 </script>
 </body>

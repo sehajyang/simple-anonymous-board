@@ -18,7 +18,7 @@ public class BoardsMainResponseDto {
     private String writer;
     private String content;
     private String category;
-    private Integer hit;
+    private int hit;
     private String sendyn;
     private String moddate;
 

@@ -34,4 +34,5 @@ public interface NoticeBoardsRepository extends JpaRepository<NoticeBoards, Long
    @Query("DELETE FROM NoticeBoards b " +
            "WHERE b.boardNo = :boardNo")
    int delBoard(@Param("boardNo") Long boardNo);
+
 }

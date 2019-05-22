@@ -76,8 +76,7 @@
                         </div>
                         <div class="card-footer">
                             <input type="hidden" id="board-no" value="{{boardDetail.boardNo}}">
-                            <button type="button" class="btn btn-primary btn-sm" id="btn-modify"
-                                    onclick="location.href='/boards/notice/{{boardDetail.boardNo}}/editor'">
+                            <button type="button" class="btn btn-primary btn-sm" id="btn-check-pwd">
                                 <i class="fa fa-dot-circle-o"></i>글 수정
                             </button>
                             <button type="button" class="btn btn-danger btn-sm"
@@ -94,6 +93,8 @@
     </div>
 </div>
 <script src="/js/app/delete.js"></script>
+<script src="/js/app/check-passwd.js"></script>
+
 {{> layout/footer}}
 </body>
 </html>

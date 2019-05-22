@@ -2,14 +2,14 @@ package com.herren.seha.controller;
 
 import com.herren.seha.biz.board.BoardService;
 import com.herren.seha.dto.boards.BoardsMainResponseDto;
-import com.herren.seha.dto.boards.BoardsSaveRequestDto;
 import com.herren.seha.dto.boards.NoticeBoardsMainResponseDto;
 import com.herren.seha.util.CommonUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -35,9 +35,11 @@ public class AnonyBoardController {
     public String lobbyPage(Model model, HttpSession session) {
         List<BoardsMainResponseDto> boardList = boardService.getAnonyBoardsLists();
         List<NoticeBoardsMainResponseDto> noticeBoardList = boardService.getNoticeBoardsLists();
+
         model.addAttribute("boardList", CommonUtil.makeLimitListForNotice(noticeBoardList, 10));
         model.addAttribute("boardListLimit", CommonUtil.makeLimitList(boardList, 5));
         model.addAttribute("ssId", session.getAttribute("ssId"));
+
         return "lobby";
     }
 
@@ -63,13 +65,6 @@ public class AnonyBoardController {
     public String getAnonyBoardsModEditorPage(@PathVariable("boardNo") Long boardNo, Model model){
         model.addAttribute("boardDetail", boardService.getAnonyBoardsDetail(boardNo));
         return "anony/modEditor";
-    }
-
-    @ResponseBody
-    @PostMapping("/boards/anony/{boardNo}")
-    public Long modAnonyBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto) {
-        int result = boardService.modAnonyBoards(boardNo, dto.getTitle(), dto.getContent(), dto.getCategory(), dto.getSendyn());
-        return (long) result;
     }
 
 }

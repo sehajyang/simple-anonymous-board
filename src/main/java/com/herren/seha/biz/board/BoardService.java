@@ -46,8 +46,8 @@ public class BoardService {
     }
 
     @Transactional
-    public int modAnonyBoards(Long boardNo, String title, String content, String category, String sendyn) {
-        return anonyBoardsRepository.modBoard(boardNo, title, content, category, sendyn);
+    public int modAnonyBoards(Long boardNo, String title, String content, String passwd, String category, String sendyn) {
+        return anonyBoardsRepository.modBoard(boardNo, title, content, passwd, category, sendyn);
     }
 
     @Transactional
@@ -80,5 +80,10 @@ public class BoardService {
     @Transactional(readOnly = true)
     public NoticeBoards getNoticeBoardsDetail(Long boardNo) {
         return noticeBoardsRepository.getBoardDetail(boardNo);
+    }
+
+    @Transactional(readOnly = true)
+    public String getBoardsCheckPasswd(Long boardNo, String passwd) {
+        return anonyBoardsRepository.getBoardsCheckPasswd(boardNo, passwd);
     }
 }

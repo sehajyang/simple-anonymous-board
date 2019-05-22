@@ -7,7 +7,7 @@ var main = {
     },
     save: function () {
         var data;
-        if($('#board-kind').val() === 'anony'){
+        if ($('#board-kind').val() === 'anony') {
             data = {
                 title: $('#title').val(),
                 passwd: $('#passwd').val(),
@@ -16,7 +16,7 @@ var main = {
                 category: $('#category').val(),
                 sendyn: $('#sendyn').val()
             };
-        }else{
+        } else {
             data = {
                 title: $('#title').val(),
                 passwd: $('#passwd').val(),
@@ -38,7 +38,6 @@ var main = {
             console.log(error);
         });
     }
-
 };
 
 main.init();

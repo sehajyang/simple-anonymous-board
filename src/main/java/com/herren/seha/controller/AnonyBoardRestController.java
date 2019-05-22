@@ -6,10 +6,7 @@ import com.herren.seha.util.Constant;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author seha
@@ -33,5 +30,23 @@ public class AnonyBoardRestController {
     public String delBoards(@PathVariable("boardNo") Long boardNo) {
         int result = boardService.delAnonyBoards(boardNo);
         return (result > 0) ? Constant.RESULT_SUCCESS : Constant.RESULT_FAIL;
+    }
+
+    @PostMapping("/boards/anony/{boardNo}")
+    public Long modAnonyBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto) {
+        int result = boardService.modAnonyBoards(boardNo, dto.getTitle(), dto.getContent(), dto.getPasswd(), dto.getCategory(), dto.getSendyn());
+        return (long) result;
+    }
+
+    @PostMapping("/boards/anony/{boardNo}/checkpwd")
+    public Long getBoardsCheckPasswd(@PathVariable("boardNo") Long boardNo, String passwd) {
+        log.error("paswd"+passwd);
+        String getDbPasswd = boardService.getBoardsCheckPasswd(boardNo, passwd);
+        if (passwd != null) {
+            if (passwd.equals(getDbPasswd)) {
+                return 1L;
+            }
+        }
+        return 0L;
     }
 }

@@ -12,6 +12,11 @@
     #content {
         background-color: white;
     }
+
+    .modal-dialog {
+        max-width: 500px;
+        margin: 15% auto;
+    }
 </style>
 {{> layout/sidebar}}
 
@@ -76,25 +81,61 @@
                         </div>
                         <div class="card-footer">
                             <input type="hidden" id="board-no" value="{{boardDetail.boardNo}}">
-                            <button type="button" class="btn btn-primary btn-sm" id="btn-modify"
-                                    onclick="window.location.href='/boards/anony/{{boardDetail.boardNo}}/editor'">
+                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                    data-target="#checkpwd-modal"
+                                    onclick="$('#mod-del-type-save').val('mod')">
                                 <i class="fa fa-dot-circle-o"></i>글 수정
                             </button>
-                            <button type="button" class="btn btn-danger btn-sm"
-                                    onclick="onclickDelPost('{{boardDetail.boardNo}}')"><i class="fa fa-ban"></i>글 삭제
+                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                    data-target="#checkpwd-modal"
+                                    onclick="$('#mod-del-type-save').val('del')"><i class="fa fa-ban"></i>글 삭제
                             </button>
-                            <button type="button" class="btn btn-success btn-sm" onclick="window.location.href='/lobby'"><i class="fa fa-home"></i>홈</button>
-                            <button type="button" class="btn btn-success btn-sm" onclick="location.href='/boards/anony'"><i class="fa fa-arrow-left"></i>목록으로</button>
+                            <button type="button" class="btn btn-success btn-sm"
+                                    onclick="window.location.href='/lobby'"><i class="fa fa-home"></i>홈
+                            </button>
+                            <button type="button" class="btn btn-success btn-sm"
+                                    onclick="location.href='/boards/anony'"><i class="fa fa-arrow-left"></i>목록으로
+                            </button>
+                            <input type="hidden" id="mod-del-type-save">
                             <label style="float: right;">최종 수정일 {{boardDetail.moddate}}</label>
                         </div>
+
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
+<!-- mod modal area -->
+<div class="modal fade" id="checkpwd-modal" tabindex="-1" role="dialog" aria-labelledby="checkpwd-modal"
+     aria-hidden="true">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="checkpwd-modal-label">글 비밀번호</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>
+                    글 비밀번호를 입력해주세요.
+                </p>
+                <div class="col-12 col-md-9">
+                    <input type="text" class="form-control" id="passwd">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">취소</button>
+                <button type="button" class="btn btn-primary" id="btn-check-pwd">확인</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end mod modal -->
 <script src="/js/app/delete.js"></script>
+<script src="/js/app/check-passwd.js"></script>
 {{> layout/footer}}
 </body>
 </html>

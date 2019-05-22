@@ -32,7 +32,7 @@
                             <form action="" method="post" class="form-horizontal">
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="writer" class=" form-control-label">작성자</label>
+                                        <label for="writer" class=" form-control-label">글번호</label>
                                     </div>
                                     <div class="col-12 col-md-9">
                                         <input type="text" id="board-no" name="disabled-input"
@@ -67,8 +67,8 @@
                                         <label for="title" class=" form-control-label">글 제목</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <input type="text" id="title" name="title" value={{boardDetail.title}}
-                                               class="form-control">
+                                        <input type="text" id="title" name="title" value="{{{boardDetail.title}}}"
+                                               class="form-control" >
                                     </div>
                                 </div>
                                 <div class="row form-group">

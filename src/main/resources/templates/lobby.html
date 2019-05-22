@@ -104,10 +104,10 @@
                                 <div class="table-responsive">
                                     <table class="table table-top-campaign">
                                         <tbody>
-                                        {{#each boardListLimit}}
+                                        {{#each anonyBoardListLikeTop5}}
                                         <tr onclick="location.href='/boards/anony/{{boardNo}}'">
                                             <td>{{boardNo}}.&nbsp;{{title}}</td>
-                                            <td class="text-right">0</td>
+                                            <td class="text-right">{{hit}}</td>
                                         </tr>
                                         {{/each}}
                                         </tbody>

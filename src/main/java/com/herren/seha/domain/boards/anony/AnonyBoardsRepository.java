@@ -1,5 +1,6 @@
 package com.herren.seha.domain.boards.anony;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -55,4 +56,9 @@ public interface AnonyBoardsRepository extends JpaRepository<AnonyBoards, Long> 
             "FROM AnonyBoards b " +
             "WHERE b.boardNo = :boardNo")
     int getBoardsNowLikeCount(@Param("boardNo") Long boardNo);
+
+    @Query("SELECT b " +
+            "FROM AnonyBoards b " +
+            "ORDER BY b.hit DESC")
+    Stream<AnonyBoards> getAnonyBoardsLikeTop5Lists(Pageable pageable);
 }

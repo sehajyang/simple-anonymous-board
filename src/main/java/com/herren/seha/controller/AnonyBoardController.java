@@ -35,9 +35,12 @@ public class AnonyBoardController {
     public String lobbyPage(Model model, HttpSession session) {
         List<BoardsMainResponseDto> boardList = boardService.getAnonyBoardsLists();
         List<NoticeBoardsMainResponseDto> noticeBoardList = boardService.getNoticeBoardsLists();
+        List<BoardsMainResponseDto> anonyBoardListLikeTop5 = boardService.getAnonyBoardsLikeTop5Lists();
 
         model.addAttribute("boardList", CommonUtil.makeLimitListForNotice(noticeBoardList, 10));
         model.addAttribute("boardListLimit", CommonUtil.makeLimitList(boardList, 5));
+        model.addAttribute("anonyBoardListLikeTop5", anonyBoardListLikeTop5);
+
         model.addAttribute("ssId", session.getAttribute("ssId"));
 
         return "lobby";

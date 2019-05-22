@@ -10,6 +10,7 @@ import com.herren.seha.dto.boards.NoticeBoardsMainResponseDto;
 import com.herren.seha.dto.boards.NoticeBoardsSaveRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -95,5 +96,12 @@ public class BoardService {
     @Transactional(readOnly = true)
     public int getBoardsNowLikeCount(Long boardNo) {
         return anonyBoardsRepository.getBoardsNowLikeCount(boardNo);
+    }
+
+    @Transactional(readOnly = true)
+    public List<BoardsMainResponseDto> getAnonyBoardsLikeTop5Lists() {
+        return anonyBoardsRepository.getAnonyBoardsLikeTop5Lists(PageRequest.of(0, 5))
+                .map(BoardsMainResponseDto::new)
+                .collect(Collectors.toList());
     }
 }

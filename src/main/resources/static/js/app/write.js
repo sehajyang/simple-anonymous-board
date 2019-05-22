@@ -62,12 +62,14 @@ var join = {
             url: '/register',
             dataType: 'json',
             contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(userData)
-        }).done(function (data) {
-            console.log(data)
-            if(data == 1){
+            data: JSON.stringify(userData),
+            success: function(data) {
+                console.log(data)
+            }}
+        ).done(function (data) {
+            if(data === 1){
                 alert('회원가입이 완료되었습니다. 로그인 해주세요');
-                location.href= '/login'
+                location.href='/login'
             }else{
                 alert('이미 가입된 아이디입니다.');
             }

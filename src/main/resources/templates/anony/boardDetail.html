@@ -7,6 +7,24 @@
 
     .col-lg-8 {
         padding-left: 10%;
+        padding-bottom: 10%;
+    }
+
+    @media (max-width: 991px) {
+        .col-lg-8 {
+            padding-left: 0;
+            padding-bottom: 20%;
+            padding-top: 0;
+        }
+
+        h1 {
+            margin-left: 10%;
+        }
+
+        #page-title-text {
+            padding-top: 0;
+            padding-bottom: 0;
+        }
     }
 
     #content {
@@ -17,6 +35,39 @@
         max-width: 500px;
         margin: 15% auto;
     }
+
+    .card-footer {
+        margin-top: 120px;
+        padding-bottom: 10px;
+    }
+
+    .final-moddate-text {
+        float: right;
+        padding-top: 7px;
+    }
+
+    .thumb-up {
+        position: absolute;
+        padding-left: 45%;
+    }
+
+    .thumb-up-img {
+        padding-bottom: 0;
+        opacity: 1;
+        display: block;
+        height: auto;
+        transition: .5s ease;
+        backface-visibility: hidden;
+    }
+
+    .thumb-up-img:hover {
+        opacity: 0.3;
+    }
+
+    div.like-count {
+        text-align: center;
+    }
+
 </style>
 {{> layout/sidebar}}
 
@@ -76,31 +127,46 @@
                                 <textarea name="textarea-disabled-input" id="content" rows="15" placeholder="내용을 작성해주세요"
                                           class="form-control" disabled>{{boardDetail.content}}</textarea>
                                 </div>
+
+                            </div>
+                            <div class="row form-group">
+                                <div class="thumb-up">
+                                    <img src="/images/thumb-up.png" alt="like"
+                                         class="thumb-up-img " style="padding-bottom: 10px;"
+                                         onclick="onclickPlusLike('{{ssId}}')"/>
+                                    <div class="like-text">이 글을 추천</div>
+                                    <div class="like-count"><b style="color:#548cfc;">14</b></div>
+                                </div>
                             </div>
                             <!-- 목록출력 영역 END -->
                         </div>
                         <div class="card-footer">
-                            <input type="hidden" id="board-no" value="{{boardDetail.boardNo}}">
-                            <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
-                                    data-target="#checkpwd-modal"
-                                    onclick="$('#mod-del-type-save').val('mod')">
-                                <i class="fa fa-dot-circle-o"></i>글 수정
-                            </button>
-                            <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                    data-target="#checkpwd-modal"
-                                    onclick="$('#mod-del-type-save').val('del')"><i class="fa fa-ban"></i>글 삭제
-                            </button>
-                            <button type="button" class="btn btn-success btn-sm"
-                                    onclick="window.location.href='/lobby'"><i class="fa fa-home"></i>홈
-                            </button>
-                            <button type="button" class="btn btn-success btn-sm"
-                                    onclick="location.href='/boards/anony'"><i class="fa fa-arrow-left"></i>목록으로
-                            </button>
-                            <input type="hidden" id="mod-del-type-save">
-                            <label style="float: right;">최종 수정일 {{boardDetail.moddate}}</label>
+
+                            <div class="buttons">
+                                <input type="hidden" id="board-no" value="{{boardDetail.boardNo}}">
+                                <input type="hidden" id="mod-del-type-save">
+
+                                <button type="button" class="btn btn-success btn-sm"
+                                        onclick="window.location.href='/lobby'"><i class="fa fa-home"></i>홈
+                                </button>
+                                <button type="button" class="btn btn-success btn-sm"
+                                        onclick="location.href='/boards/anony'"><i class="fa fa-arrow-left"></i>목록으로
+                                </button>
+                                <button type="button" class="btn btn-primary btn-sm" data-toggle="modal"
+                                        data-target="#checkpwd-modal"
+                                        onclick="$('#mod-del-type-save').val('mod')">
+                                    <i class="fa fa-dot-circle-o"></i>글 수정
+                                </button>
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                        data-target="#checkpwd-modal"
+                                        onclick="$('#mod-del-type-save').val('del')"><i class="fa fa-ban"></i>글 삭제
+                                </button>
+                                <div class="final-moddate-text">
+                                    <small><label style="float: right; margin-bottom: 0">최종 수정일
+                                        {{boardDetail.moddate}}</label></small>
+                                </div>
+                            </div>
                         </div>
-
-
                     </div>
                 </div>
             </div>
@@ -137,5 +203,10 @@
 <script src="/js/app/delete.js"></script>
 <script src="/js/app/check-passwd.js"></script>
 {{> layout/footer}}
+<script>
+    function onclickPlusLike(ssId) {
+        console.log('추천되었습니다');
+    }
+</script>
 </body>
 </html>

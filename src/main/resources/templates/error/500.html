@@ -1,0 +1,30 @@
+{{> layout/header}}
+<style>
+    .main-content {
+        padding-left: 30%;
+    }
+
+    div.text-box {
+        position: absolute;
+        align-items: center;
+        padding-left: 10%;
+
+    }
+
+    @media (max-width: 991px) {
+        .main-content {
+            padding-left: 0;
+        }
+    }
+</style>
+<div class="main-content">
+    <img src="/images/404-image.png" alt="404-image">
+    <div class="text-box">
+        <h1>500</h1>
+        <h3>Something was wrong</h3>
+        <button type="button" class="btn btn-primary btn-sm" onclick="location.href=history.back()">뒤로가기</button>
+        <button type="button" class="btn btn-success btn-sm" onclick="location.href='/'">홈으로</button>
+    </div>
+</div>
+
+{{> layout/footer}}

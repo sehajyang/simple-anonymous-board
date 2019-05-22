@@ -1,11 +1,14 @@
 package com.herren.seha.controller;
 
 import com.herren.seha.biz.board.BoardService;
+import com.herren.seha.domain.boards.anony.AnonyBoards;
 import com.herren.seha.dto.boards.BoardsSaveRequestDto;
+import com.herren.seha.util.CommonUtil;
 import com.herren.seha.util.Constant;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -50,8 +53,22 @@ public class AnonyBoardRestController {
     }
 
     @PostMapping("/boards/anony/{boardNo}/like")
-    public int doBoardsLikeCountPlus(@PathVariable("boardNo") Long boardNo){
+    public int doBoardsLikeCountPlus(@PathVariable("boardNo") Long boardNo) {
+
         boardService.doBoardsLikeCountPlus(boardNo);
-        return boardService.getBoardsNowLikeCount(boardNo);
+
+        AnonyBoards anonyBoards = boardService.getAnonyBoardsDetail(boardNo);
+        int nowLikeCount = boardService.getBoardsNowLikeCount(boardNo);
+        SendSlackAndRegSendYnN(anonyBoards, nowLikeCount);
+
+        return nowLikeCount;
+    }
+
+    @Transactional
+    public void SendSlackAndRegSendYnN(AnonyBoards anonyBoards, int nowLikeCount) {
+        if (nowLikeCount > 20 && "Y".equals(anonyBoards.getSendyn())) {
+            CommonUtil.sendSlack("http://192.168.0.77:4000/boards/anony/" + anonyBoards.getBoardNo());
+            boardService.modAnonyBoardsSetSendYn(anonyBoards.getBoardNo(), "N");
+        }
     }
 }

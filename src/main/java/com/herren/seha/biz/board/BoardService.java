@@ -104,4 +104,9 @@ public class BoardService {
                 .map(BoardsMainResponseDto::new)
                 .collect(Collectors.toList());
     }
+
+    @Transactional
+    public int modAnonyBoardsSetSendYn(Long boardNo, String yn) {
+        return anonyBoardsRepository.modAnonyBoardsSetSendYn(boardNo, yn);
+    }
 }

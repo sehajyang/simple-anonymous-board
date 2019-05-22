@@ -17,10 +17,6 @@ import java.util.List;
 
 @HandlebarsHelper
 public class CommonHelper {
-    public String sayHello(String name) {
-        return String.format("Hello %s!", Objects.firstNonNull(name, "unknown"));
-    }
-
     public String limitList(List<BoardsMainResponseDto> arr, int limit_num) throws IOException {
         final ByteArrayOutputStream out = new ByteArrayOutputStream();
         final ObjectMapper mapper = new ObjectMapper();

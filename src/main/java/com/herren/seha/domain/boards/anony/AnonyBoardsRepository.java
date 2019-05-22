@@ -61,4 +61,10 @@ public interface AnonyBoardsRepository extends JpaRepository<AnonyBoards, Long> 
             "FROM AnonyBoards b " +
             "ORDER BY b.hit DESC")
     Stream<AnonyBoards> getAnonyBoardsLikeTop5Lists(Pageable pageable);
+
+    @Modifying
+    @Query("UPDATE AnonyBoards b " +
+            "SET b.sendyn = :yn " +
+            "WHERE b.boardNo = :boardNo")
+    int modAnonyBoardsSetSendYn(@Param("boardNo")Long boardNo, @Param("yn")String yn);
 }

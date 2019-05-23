@@ -108,18 +108,26 @@
                             </div>
                             <div class="row form-group">
                                 <div class="col col-lg-2">
-                                    <label class=" form-control-label">글 제목</label>
-                                </div>
-                                <div class="col-12 col-md-9">
-                                    {{boardDetail.title}}
-                                </div>
-                            </div>
-                            <div class="row form-group">
-                                <div class="col col-lg-2">
                                     <label class=" form-control-label">카테고리</label>
                                 </div>
                                 <div class="col-12 col-md-9">
                                     {{boardDetail.category}}
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-lg-2">
+                                    <label class=" form-control-label">발송 여부</label>
+                                </div>
+                                <div class="col-12 col-md-9" id="send-text">
+                                    {{boardDetail.sendyn}}
+                                </div>
+                            </div>
+                            <div class="row form-group">
+                                <div class="col col-lg-2">
+                                    <label class=" form-control-label">글 제목</label>
+                                </div>
+                                <div class="col-12 col-md-9">
+                                    <b>{{boardDetail.title}}</b>
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -221,6 +229,9 @@
             success: function (data) {
                 if(data === 0){
                     alert('이미 추천한 글입니다.');
+                }else if(data === 20){
+                    alert('추천 및 발송되었습니다');
+                    $('#send-text').text('').text('발송완료');
                 }else{
                     alert('추천되었습니다.');
                     $('#like').text('').text(data);

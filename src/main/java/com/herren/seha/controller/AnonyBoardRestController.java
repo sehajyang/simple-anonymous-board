@@ -76,9 +76,9 @@ public class AnonyBoardRestController {
 
     @Transactional
     public void SendSlackAndRegSendYnN(AnonyBoards anonyBoards, int nowLikeCount) {
-        if (nowLikeCount > 20 && "Y".equals(anonyBoards.getSendyn())) {
+        if (nowLikeCount >= 20 && "발송대기".equals(anonyBoards.getSendyn())) {
             CommonUtil.sendSlack("http://192.168.0.77:4000/boards/anony/" + anonyBoards.getBoardNo());
-            boardService.modAnonyBoardsSetSendYn(anonyBoards.getBoardNo(), "DONE");
+            boardService.modAnonyBoardsSetSendYn(anonyBoards.getBoardNo(), "발송완료");
         }
     }
 }

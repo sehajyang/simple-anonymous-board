@@ -94,26 +94,21 @@
                                         </select>
                                     </div>
                                 </div>
-                                <!-- START RADIO BOX -->
+                                <!-- START SEND 여부 -->
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label class=" form-control-label">알림 발송 여부</label>
+                                        <label for="category" class=" form-control-label">발송여부</label>
                                     </div>
-                                    <div class="col col-md-9">
-                                        <div class="form-check-inline form-check">
-                                            <label for="sendyn" class="form-check-label ">
-                                                <input type="radio" id="sendyn" name="inline-radios"
-                                                       value="Y"
-                                                       class="form-check-input">네&nbsp;
-                                            </label>
-                                            <label for="inline-radio2" class="form-check-label ">
-                                                <input type="radio" id="inline-radio2" name="inline-radios"
-                                                       value="option2"
-                                                       class="form-check-input">아니오
-                                            </label>
-                                        </div>
+                                    <div class="col-12 col-md-9">
+                                        <div id="sendyn-div"></div>
+                                        <select name="select" id="sendyn" class="form-control">
+                                            <option>발송여부 선택</option>
+                                            <option value="발송대기">YES</option>
+                                            <option value="발송안함">NO</option>
+                                        </select>
                                     </div>
                                 </div>
+                                <!-- END SEND 여부 -->
                             </form>
                         </div>
                         <!-- END RADIO BOX -->
@@ -134,6 +129,15 @@
 </div>
 </div>
 {{> layout/footer}}
+<script>
+    $(document).ready(function() {
+        if('{{boardDetail.sendyn}}' === '발송완료'){
+            $('#sendyn').append('<option value="발송완료">발송완료</option>');
+            $('#sendyn').val("발송완료").attr("selected", "selected");
+            $('#sendyn').attr('disabled', 'true');
+        }
+    });
+</script>
 <script src="/js/app/modify.js"></script>
 </body>
 </html>

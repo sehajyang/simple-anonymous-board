@@ -43,7 +43,7 @@ public class UserRestController {
     }
 
     private void saveSessionAndGrade(HttpSession session, Users getUserData) {
-        session.setAttribute("ssId", getUserData.getId());
+        session.setAttribute("ssId", String.valueOf(getUserData.getUserNo()));
         session.setAttribute("grade", getUserData.getGrade());
     }
 

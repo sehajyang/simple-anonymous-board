@@ -1,14 +1,12 @@
 package com.herren.seha.biz.board;
 
 import com.herren.seha.domain.boards.anony.AnonyBoards;
+import com.herren.seha.domain.boards.anony.AnonyBoardsLike;
 import com.herren.seha.domain.boards.anony.AnonyBoardsLikeRepository;
 import com.herren.seha.domain.boards.anony.AnonyBoardsRepository;
 import com.herren.seha.domain.boards.notice.NoticeBoards;
 import com.herren.seha.domain.boards.notice.NoticeBoardsRepository;
-import com.herren.seha.dto.boards.BoardsMainResponseDto;
-import com.herren.seha.dto.boards.BoardsSaveRequestDto;
-import com.herren.seha.dto.boards.NoticeBoardsMainResponseDto;
-import com.herren.seha.dto.boards.NoticeBoardsSaveRequestDto;
+import com.herren.seha.dto.boards.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.PageRequest;
@@ -92,7 +90,15 @@ public class BoardService {
     }
 
     @Transactional
-    public int doBoardsLikeCountPlus(Long boardNo) {
+    public int doBoardsLikeCountPlus(Long boardNo, Long userNo) {
+        AnonyBoards ab = new AnonyBoards();
+        ab.setBoardNo(boardNo);
+
+        BoardsLikeSaveRequestDto dto = new BoardsLikeSaveRequestDto();
+        dto.setBoardNo(ab);
+        dto.setUserNo(userNo);
+
+        anonyBoardsLikeRepository.save(dto.toEntity());
         return anonyBoardsRepository.doBoardsLikeCountPlus(boardNo);
     }
 
@@ -117,5 +123,20 @@ public class BoardService {
     public int getTodaysNewAnonyPostCount(LocalDateTime currentDate) {
         return anonyBoardsRepository.getTodaysNewAnonyPostCount(currentDate);
     }
+
+    @Transactional(readOnly = true)
+    public Object findByBoardNo(Long boardNo) {
+        AnonyBoards an = new AnonyBoards();
+        an.setBoardNo(boardNo);
+        return anonyBoardsLikeRepository.findByBoardNo(an);
+    }
+
+    @Transactional(readOnly = true)
+    public AnonyBoardsLike findByBoardNoAndUserNo(Long boardNo, Long userNo) {
+        AnonyBoards an = new AnonyBoards();
+        an.setBoardNo(boardNo);
+        return anonyBoardsLikeRepository.findByBoardNoAndUserNo(an, userNo);
+    }
+
 
 }

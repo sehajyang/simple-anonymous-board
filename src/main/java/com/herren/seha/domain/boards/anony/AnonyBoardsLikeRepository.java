@@ -12,4 +12,5 @@ import java.util.List;
 @Repository
 public interface AnonyBoardsLikeRepository extends JpaRepository<AnonyBoardsLike, Long> {
     List<AnonyBoardsLike> findByBoardNo(AnonyBoards ab);
+    AnonyBoardsLike findByBoardNoAndUserNo(AnonyBoards ab, Long userNo);
 }

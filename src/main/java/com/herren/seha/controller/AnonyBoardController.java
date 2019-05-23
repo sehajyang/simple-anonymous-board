@@ -1,8 +1,6 @@
 package com.herren.seha.controller;
 
 import com.herren.seha.biz.board.BoardService;
-import com.herren.seha.domain.boards.anony.AnonyBoards;
-import com.herren.seha.domain.boards.anony.AnonyBoardsLike;
 import com.herren.seha.domain.boards.anony.AnonyBoardsLikeRepository;
 import com.herren.seha.dto.boards.BoardsMainResponseDto;
 import com.herren.seha.dto.boards.NoticeBoardsMainResponseDto;
@@ -69,13 +67,12 @@ public class AnonyBoardController {
     }
 
     @GetMapping("/boards/anony/{boardNo}")
-    public String getAnonyBoardsDetail(@PathVariable("boardNo") Long boardNo, Model model) {
-        AnonyBoardsLike a = new AnonyBoardsLike();
-        AnonyBoards an = new AnonyBoards();
-        an.setBoardNo(boardNo);
-        a.setBoardNo(an);
+    public String getAnonyBoardsDetail(@PathVariable("boardNo") Long boardNo,
+                                       Model model, HttpSession session) {
         model.addAttribute("boardDetail", boardService.getAnonyBoardsDetail(boardNo));
-        model.addAttribute("boardLikeList", anonyBoardsLikeRepository.findByBoardNo(an));
+        model.addAttribute("boardLikeList", boardService.findByBoardNo(boardNo));
+        model.addAttribute("ssId", session.getAttribute("ssId"));
+
         return "anony/boardDetail";
     }
 

@@ -208,15 +208,27 @@
 {{> layout/footer}}
 <script>
     function onclickPlusLike(ssId) {
+        if(ssId == null ||ssId === 'undefined'){
+            alert('오류가 발생했습니다. 로그아웃 후 로그인해주세요');
+            return false;
+        }
         $.ajax({
             type: 'POST',
             url: '/boards/anony/' + $('#board-no').val() + '/like',
             data: {
-                id: ssId
+                userNo: ssId
             },
             success: function (data) {
-                alert('추천되었습니다.');
-                $('#like').text('').text(data);
+                if(data === 0){
+                    alert('이미 추천한 글입니다.');
+                }else{
+                    alert('추천되었습니다.');
+                    $('#like').text('').text(data);
+                }
+            },
+            fail: function(error) {
+                console.log(error);
+                alert('오류가 발생했습니다. 계속될 경우 개발팀 세하에게 알려주세요')
             }
         });
     }

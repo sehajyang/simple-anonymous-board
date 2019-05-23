@@ -4,8 +4,11 @@ import com.herren.seha.domain.BaseTimeEntity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author seha
@@ -14,11 +17,13 @@ import javax.persistence.*;
 
 @NoArgsConstructor
 @Getter
+@Setter
 @Entity
 public class AnonyBoards extends BaseTimeEntity {
 
     @Id
     @GeneratedValue
+    @Column(name = "board_no")
     private Long boardNo;
 
     @Column(length = 500)
@@ -37,8 +42,8 @@ public class AnonyBoards extends BaseTimeEntity {
 
     private String sendyn;
 
-
-
+    @OneToMany(mappedBy = "boardNo", cascade = {CascadeType.ALL})
+    private Set<AnonyBoardsLike> anonyboardsLike = new HashSet<>();
 
 
     @Builder

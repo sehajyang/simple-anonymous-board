@@ -83,6 +83,9 @@
                     <div class="card">
                         <div class="card-header">
                             <strong>익명게시판 </strong> 글 보기
+                            {{#each boardLikeList}}
+                            {{userNo}}
+                            {{/each}}
                             <input type="hidden" id="board-kind" value="anony">
                         </div>
                         <div class="card-body card-block">

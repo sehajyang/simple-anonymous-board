@@ -1,11 +1,15 @@
 package com.herren.seha.controller;
 
 import com.herren.seha.biz.board.BoardService;
+import com.herren.seha.domain.boards.anony.AnonyBoards;
+import com.herren.seha.domain.boards.anony.AnonyBoardsLike;
+import com.herren.seha.domain.boards.anony.AnonyBoardsLikeRepository;
 import com.herren.seha.dto.boards.BoardsMainResponseDto;
 import com.herren.seha.dto.boards.NoticeBoardsMainResponseDto;
 import com.herren.seha.util.CommonUtil;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +29,11 @@ import java.util.List;
 @Log4j2
 public class AnonyBoardController {
 
+    @Autowired
     private BoardService boardService;
+
+    @Autowired
+    private AnonyBoardsLikeRepository anonyBoardsLikeRepository;
 
     @GetMapping("/")
     public String mainPage() {
@@ -42,9 +50,8 @@ public class AnonyBoardController {
                 (CommonUtil.getTodayyyyyMMdd("year"), CommonUtil.getTodayyyyyMMdd("month"), CommonUtil.getTodayyyyyMMdd("day"),
                         00, 00, 00));
 
-
-        model.addAttribute("anonyBoardTotalCount",boardList.size());
-        model.addAttribute("noticeBoardTotalCount",noticeBoardList.size());
+        model.addAttribute("anonyBoardTotalCount", boardList.size());
+        model.addAttribute("noticeBoardTotalCount", noticeBoardList.size());
         model.addAttribute("boardList", CommonUtil.makeLimitListForNotice(noticeBoardList, 10));
         model.addAttribute("boardListLimit", CommonUtil.makeLimitList(boardList, 5));
         model.addAttribute("anonyBoardListLikeTop5", anonyBoardListLikeTop5);
@@ -63,8 +70,12 @@ public class AnonyBoardController {
 
     @GetMapping("/boards/anony/{boardNo}")
     public String getAnonyBoardsDetail(@PathVariable("boardNo") Long boardNo, Model model) {
-        log.debug("======================" + boardNo);
+        AnonyBoardsLike a = new AnonyBoardsLike();
+        AnonyBoards an = new AnonyBoards();
+        an.setBoardNo(boardNo);
+        a.setBoardNo(an);
         model.addAttribute("boardDetail", boardService.getAnonyBoardsDetail(boardNo));
+        model.addAttribute("boardLikeList", anonyBoardsLikeRepository.findByBoardNo(an));
         return "anony/boardDetail";
     }
 

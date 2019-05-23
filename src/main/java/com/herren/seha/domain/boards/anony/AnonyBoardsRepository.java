@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -72,4 +73,6 @@ public interface AnonyBoardsRepository extends JpaRepository<AnonyBoards, Long> 
             "FROM AnonyBoards b " +
             "WHERE b.regdate > :currentDate")
     int getTodaysNewAnonyPostCount(@Param("currentDate") LocalDateTime currentDate);
+
+
 }

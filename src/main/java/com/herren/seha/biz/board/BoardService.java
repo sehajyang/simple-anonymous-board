@@ -1,6 +1,7 @@
 package com.herren.seha.biz.board;
 
 import com.herren.seha.domain.boards.anony.AnonyBoards;
+import com.herren.seha.domain.boards.anony.AnonyBoardsLikeRepository;
 import com.herren.seha.domain.boards.anony.AnonyBoardsRepository;
 import com.herren.seha.domain.boards.notice.NoticeBoards;
 import com.herren.seha.domain.boards.notice.NoticeBoardsRepository;
@@ -28,6 +29,7 @@ import java.util.stream.Collectors;
 @Log4j2
 public class BoardService {
     private AnonyBoardsRepository anonyBoardsRepository;
+    private AnonyBoardsLikeRepository anonyBoardsLikeRepository;
     private NoticeBoardsRepository noticeBoardsRepository;
 
     @Transactional(readOnly = true)
@@ -111,8 +113,9 @@ public class BoardService {
         return anonyBoardsRepository.modAnonyBoardsSetSendYn(boardNo, yn);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public int getTodaysNewAnonyPostCount(LocalDateTime currentDate) {
         return anonyBoardsRepository.getTodaysNewAnonyPostCount(currentDate);
     }
+
 }

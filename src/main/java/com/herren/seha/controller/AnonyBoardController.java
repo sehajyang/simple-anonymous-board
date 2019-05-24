@@ -4,7 +4,6 @@ import com.herren.seha.biz.board.BoardService;
 import com.herren.seha.domain.boards.anony.AnonyBoards;
 import com.herren.seha.domain.boards.anony.AnonyBoardsLikeRepository;
 import com.herren.seha.domain.boards.notice.NoticeBoards;
-import com.herren.seha.dto.boards.BoardsMainResponseDto;
 import com.herren.seha.util.CommonUtil;
 import com.herren.seha.util.Constant;
 import lombok.AllArgsConstructor;
@@ -44,18 +43,17 @@ public class AnonyBoardController {
 
     @GetMapping("/lobby")
     public String lobbyPage(Model model, HttpSession session) {
-        List<BoardsMainResponseDto> boardList = boardService.getAnonyBoardsLists();
-        List<NoticeBoards> noticeBoardList = boardService.getNoticeBoardsLists(0, Constant.boardListCountDefault).getContent();
+        Long anonyBoardTotalCount = boardService.getAnonyBoardsAllList(0,10 ).getTotalElements();
+        Page<NoticeBoards> noticeBoardList = boardService.getNoticeBoardsLists(0, Constant.boardListCountDefault);
         List<AnonyBoards> anonyBoardListLikeTop5 = boardService.getAnonyBoardsLikeTop5Lists().getContent();
 
         int todaysNewAnonyPostCount = boardService.getTodaysNewAnonyPostCount(LocalDateTime.of
                 (CommonUtil.getTodayyyyyMMdd("year"), CommonUtil.getTodayyyyyMMdd("month"), CommonUtil.getTodayyyyyMMdd("day"),
                         00, 00, 00));
 
-        model.addAttribute("anonyBoardTotalCount", boardList.size());
-        model.addAttribute("noticeBoardTotalCount", noticeBoardList.size());
-        model.addAttribute("boardList", noticeBoardList);
-        model.addAttribute("boardListLimit", CommonUtil.makeLimitList(boardList, 5));
+        model.addAttribute("anonyBoardTotalCount", anonyBoardTotalCount);
+        model.addAttribute("noticeBoardTotalCount", noticeBoardList.getTotalElements());
+        model.addAttribute("boardList", noticeBoardList.getContent());
         model.addAttribute("anonyBoardListLikeTop5", anonyBoardListLikeTop5);
         model.addAttribute("todaysNewAnonyPostCount", todaysNewAnonyPostCount);
 

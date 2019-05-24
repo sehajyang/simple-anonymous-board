@@ -3,9 +3,10 @@ package com.herren.seha.controller;
 import com.herren.seha.biz.board.BoardService;
 import com.herren.seha.domain.boards.anony.AnonyBoards;
 import com.herren.seha.domain.boards.anony.AnonyBoardsLikeRepository;
+import com.herren.seha.domain.boards.notice.NoticeBoards;
 import com.herren.seha.dto.boards.BoardsMainResponseDto;
-import com.herren.seha.dto.boards.NoticeBoardsMainResponseDto;
 import com.herren.seha.util.CommonUtil;
+import com.herren.seha.util.Constant;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,11 +41,12 @@ public class AnonyBoardController {
     public String mainPage() {
         return "main";
     }
+
     @GetMapping("/lobby")
     public String lobbyPage(Model model, HttpSession session) {
         List<BoardsMainResponseDto> boardList = boardService.getAnonyBoardsLists();
-        List<NoticeBoardsMainResponseDto> noticeBoardList = boardService.getNoticeBoardsLists();
-        List<BoardsMainResponseDto> anonyBoardListLikeTop5 = boardService.getAnonyBoardsLikeTop5Lists();
+        List<NoticeBoards> noticeBoardList = boardService.getNoticeBoardsLists(0, Constant.boardListCountDefault).getContent();
+        List<AnonyBoards> anonyBoardListLikeTop5 = boardService.getAnonyBoardsLikeTop5Lists().getContent();
 
         int todaysNewAnonyPostCount = boardService.getTodaysNewAnonyPostCount(LocalDateTime.of
                 (CommonUtil.getTodayyyyyMMdd("year"), CommonUtil.getTodayyyyyMMdd("month"), CommonUtil.getTodayyyyyMMdd("day"),
@@ -52,7 +54,7 @@ public class AnonyBoardController {
 
         model.addAttribute("anonyBoardTotalCount", boardList.size());
         model.addAttribute("noticeBoardTotalCount", noticeBoardList.size());
-        model.addAttribute("boardList", CommonUtil.makeLimitListForNotice(noticeBoardList, 10));
+        model.addAttribute("boardList", noticeBoardList);
         model.addAttribute("boardListLimit", CommonUtil.makeLimitList(boardList, 5));
         model.addAttribute("anonyBoardListLikeTop5", anonyBoardListLikeTop5);
         model.addAttribute("todaysNewAnonyPostCount", todaysNewAnonyPostCount);
@@ -63,8 +65,8 @@ public class AnonyBoardController {
     }
 
     @GetMapping("/boards/anony")
-    public String getAnonyBoardsListPage(Model model,@RequestParam(value = "pageNo", defaultValue = "0") int pageNo) {
-        Page<AnonyBoards> boardList = boardService.getAnonyBoardsAllList(pageNo, 3);
+    public String getAnonyBoardsListPage(Model model, @RequestParam(value = "pageNo", defaultValue = "0") int pageNo) {
+        Page<AnonyBoards> boardList = boardService.getAnonyBoardsAllList(pageNo, Constant.boardListCountDefault);
         model.addAttribute("boardList", boardList.getContent());
         model.addAttribute("pageNo", pageNo);
         model.addAttribute("pageLastNum", boardList.getTotalPages());

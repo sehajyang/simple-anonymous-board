@@ -23,6 +23,7 @@
 
 </style>
 {{> layout/sidebar}}
+{{> etc/paging}}
 <div class="page-container">
     <div class="main-container">
         <div class="main-content">
@@ -32,6 +33,7 @@
                 <div class="col-lg-12">
                     <h1 class="title-1 m-b-35"><b>공지 게시판</b></h1>
                     <input type="hidden" id="board-kind" value="notice">
+                    <input type="hidden" id="page-last-num" value="{{pageLastNum}}">
                     <button type="button" class="btn btn-primary" onclick="location.href='/boards/notice/editor';checkGrade('{{grade}}')">글 등록
                     </button>
                     <div class="table-responsive table--no-card m-b-30">
@@ -62,6 +64,7 @@
                 </div>
             </div>
             <!-- END BOARD TABLE-->
+            <div id="btn-page"></div>
         </div>
         </div>
     </div>

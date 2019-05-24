@@ -1,15 +1,19 @@
 <script>
     $(document).ready(function () {
-        var pageLastNum = Number('{{pageLastNum}}');
-        var pageRange = 3;
+        var pageLastNum = Number($("#page-last-num").val());
+        var pageRange = 5;
         var startPage = Math.floor('{{pageNo}}' / pageRange);
         var hText = '';
-        var boardKind = $('#board-kind');
+        var boardKind = $('#board-kind').val();
 
         if (startPage < 1) {
+            if (startPage + pageRange > pageLastNum) {
+                console.log(pageLastNum);
+                pageRange = pageLastNum
+            }
             for (var i = 0; i < pageRange; i++) {
                 pageBtnList(i, boardKind);
-                if (i === pageRange - 1 && i < pageLastNum) {
+                if (i !== pageLastNum-1 && i === pageRange - 1 && i < pageLastNum) {
                     nextBtn(i, boardKind);
                 }
             }

@@ -1,11 +1,11 @@
 package com.herren.seha.domain.boards.notice;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.util.stream.Stream;
 
 /**
  * @author seha
@@ -13,10 +13,7 @@ import java.util.stream.Stream;
  */
 public interface NoticeBoardsRepository extends JpaRepository<NoticeBoards, Long> {
    //  JpaRepository<Entity클래스, PK타입> 상속
-   @Query("SELECT b " +
-           "FROM NoticeBoards b " +
-           "ORDER BY b.regdate DESC")
-   Stream<NoticeBoards> getBoardsList();
+   Page<NoticeBoards> findAll(Pageable request);
 
    @Query("SELECT b " +
            "FROM NoticeBoards b " +

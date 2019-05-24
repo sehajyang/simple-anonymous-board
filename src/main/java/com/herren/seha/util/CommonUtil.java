@@ -1,7 +1,6 @@
 package com.herren.seha.util;
 
 import com.herren.seha.dto.boards.BoardsMainResponseDto;
-import com.herren.seha.dto.boards.NoticeBoardsMainResponseDto;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -34,17 +33,6 @@ public class CommonUtil {
         return resultList;
     }
 
-    public static List<NoticeBoardsMainResponseDto> makeLimitListForNotice(List<NoticeBoardsMainResponseDto> list, int max) {
-        List<NoticeBoardsMainResponseDto> resultList = new ArrayList<>();
-
-        if (list.size() < max) {
-            max = list.size();
-        }
-        for (int i = 0; i < max; i++) {
-            resultList.add(list.get(i));
-        }
-        return resultList;
-    }
 
     public static Boolean checkGradeAndRedirect(HttpSession session) {
         String grade = (String) session.getAttribute("grade");

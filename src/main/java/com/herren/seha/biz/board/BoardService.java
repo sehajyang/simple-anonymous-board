@@ -61,10 +61,9 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public List<NoticeBoardsMainResponseDto> getNoticeBoardsLists() {
-        return noticeBoardsRepository.getBoardsList()
-                .map(NoticeBoardsMainResponseDto::new)
-                .collect(Collectors.toList());
+    public Page<NoticeBoards> getNoticeBoardsLists(int pageNo, int size) {
+        Pageable pageable = PageRequest.of(pageNo, size, new Sort(Sort.Direction.DESC, "boardNo"));
+        return noticeBoardsRepository.findAll(pageable);
     }
 
     @Transactional
@@ -111,10 +110,9 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public List<BoardsMainResponseDto> getAnonyBoardsLikeTop5Lists() {
-        return anonyBoardsRepository.getAnonyBoardsLikeTop5Lists(PageRequest.of(0, 5))
-                .map(BoardsMainResponseDto::new)
-                .collect(Collectors.toList());
+    public Page<AnonyBoards> getAnonyBoardsLikeTop5Lists() {
+        Pageable pageable = PageRequest.of(0, 5, new Sort(Sort.Direction.DESC, "hit"));
+        return anonyBoardsRepository.findAll(pageable);
     }
 
     @Transactional
@@ -142,10 +140,14 @@ public class BoardService {
     }
 
     @Transactional(readOnly = true)
-    public Page<AnonyBoards> getAnonyBoardsAllList(int pageNo, int size){
-        Pageable pageable = PageRequest.of(pageNo,size, new Sort(Sort.Direction.DESC, "boardNo"));
+    public Page<AnonyBoards> getAnonyBoardsAllList(int pageNo, int size) {
+        Pageable pageable = PageRequest.of(pageNo, size, new Sort(Sort.Direction.DESC, "boardNo"));
         return anonyBoardsRepository.findAll(pageable);
     }
 
-
+    @Transactional(readOnly = true)
+    public Page<NoticeBoards> getNoticeBoardsAllList(int pageNo, int size) {
+        Pageable pageable = PageRequest.of(pageNo, size, new Sort(Sort.Direction.DESC, "boardNo"));
+        return noticeBoardsRepository.findAll(pageable);
+    }
 }

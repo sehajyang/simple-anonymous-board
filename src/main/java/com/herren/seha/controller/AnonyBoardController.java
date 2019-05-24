@@ -52,8 +52,11 @@ public class AnonyBoardController {
         List<AnonyBoards> anonyBoardListLikeTop5 = boardService.getAnonyBoardsLikeTop5Lists().getContent();
         List<String> loginHistoriesDateTimeList = userService.getdateTimeLoginHistoriesByDateTime().getContent();
         List<Integer> loginHistoriesCountList = userService.getCountLoginHistoriesByDateTime().getContent();
-        List<String> AnonyBoardsCategoryList = boardService.AnonyBoardsCategoryList();
+        List<Integer> AnonyBoardsCategoryCountList = boardService.getAnonyBoardsCategoryCountList();
         int todaysNewAnonyPostCount = boardService.getTodaysNewAnonyPostCount(LocalDateTime.of
+                (CommonUtil.getTodayyyyyMMdd("year"), CommonUtil.getTodayyyyyMMdd("month"), CommonUtil.getTodayyyyyMMdd("day")-7,
+                        00, 00, 00));
+        int thisWeekRegAnonyPostCount = boardService.thisWeekRegNoticePostCount(LocalDateTime.of
                 (CommonUtil.getTodayyyyyMMdd("year"), CommonUtil.getTodayyyyyMMdd("month"), CommonUtil.getTodayyyyyMMdd("day"),
                         00, 00, 00));
 
@@ -64,6 +67,9 @@ public class AnonyBoardController {
         model.addAttribute("todaysNewAnonyPostCount", todaysNewAnonyPostCount);
         model.addAttribute("loginHistoriesDateTimeList", loginHistoriesDateTimeList);
         model.addAttribute("loginHistoriesCountList", loginHistoriesCountList);
+        model.addAttribute("AnonyBoardsCategoryList", Constant.AnonyBoardsCategoryList);
+        model.addAttribute("AnonyBoardsCategoryCountList", AnonyBoardsCategoryCountList);
+        model.addAttribute("thisWeekRegAnonyPostCount", thisWeekRegAnonyPostCount);
 
         model.addAttribute("ssId", session.getAttribute("ssId"));
 

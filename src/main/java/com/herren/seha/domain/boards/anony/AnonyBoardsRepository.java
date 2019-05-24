@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.time.LocalDateTime;
-import java.util.stream.Stream;
+import java.util.List;
 
 /**
  * @author seha
@@ -18,11 +18,6 @@ public interface AnonyBoardsRepository extends JpaRepository<AnonyBoards, Long> 
     //  JpaRepository<Entity클래스, PK타입> 상속
 
     Page<AnonyBoards> findAll(Pageable request);
-
-    @Query("SELECT b " +
-            "FROM AnonyBoards b " +
-            "ORDER BY b.regdate DESC")
-    Stream<AnonyBoards> getBoardsList();
 
     @Query("SELECT b " +
             "FROM AnonyBoards b " +
@@ -62,11 +57,6 @@ public interface AnonyBoardsRepository extends JpaRepository<AnonyBoards, Long> 
             "WHERE b.boardNo = :boardNo")
     int getBoardsNowLikeCount(@Param("boardNo") Long boardNo);
 
-    @Query("SELECT b " +
-            "FROM AnonyBoards b " +
-            "ORDER BY b.hit DESC")
-    Stream<AnonyBoards> getAnonyBoardsLikeTop5Lists(Pageable pageable);
-
     @Modifying
     @Query("UPDATE AnonyBoards b " +
             "SET b.sendyn = :yn " +
@@ -78,5 +68,15 @@ public interface AnonyBoardsRepository extends JpaRepository<AnonyBoards, Long> 
             "WHERE b.regdate > :currentDate")
     int getTodaysNewAnonyPostCount(@Param("currentDate") LocalDateTime currentDate);
 
+    @Query("SELECT b.category " +
+            "FROM AnonyBoards b " +
+            "GROUP BY b.category " +
+            "ORDER BY b.category asc")
+    List<String> getAnonyBoardsCategoryList();
 
+    @Query("SELECT count(b) " +
+            "FROM AnonyBoards b " +
+            "GROUP BY b.category " +
+            "ORDER BY b.category asc")
+    List<Integer> getAnonyBoardsCategoryCountList();
 }

@@ -6,7 +6,9 @@ import com.herren.seha.domain.boards.anony.AnonyBoardsLikeRepository;
 import com.herren.seha.domain.boards.anony.AnonyBoardsRepository;
 import com.herren.seha.domain.boards.notice.NoticeBoards;
 import com.herren.seha.domain.boards.notice.NoticeBoardsRepository;
-import com.herren.seha.dto.boards.*;
+import com.herren.seha.dto.boards.BoardsLikeSaveRequestDto;
+import com.herren.seha.dto.boards.BoardsSaveRequestDto;
+import com.herren.seha.dto.boards.NoticeBoardsSaveRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
@@ -16,10 +18,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.net.ContentHandler;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author seha
@@ -33,13 +33,6 @@ public class BoardService {
     private AnonyBoardsRepository anonyBoardsRepository;
     private AnonyBoardsLikeRepository anonyBoardsLikeRepository;
     private NoticeBoardsRepository noticeBoardsRepository;
-
-    @Transactional(readOnly = true)
-    public List<BoardsMainResponseDto> getAnonyBoardsLists() {
-        return anonyBoardsRepository.getBoardsList()
-                .map(BoardsMainResponseDto::new)
-                .collect(Collectors.toList());
-    }
 
     @Transactional
     public Long regAnonyBoards(BoardsSaveRequestDto dto) {
@@ -151,8 +144,16 @@ public class BoardService {
         Pageable pageable = PageRequest.of(pageNo, size, new Sort(Sort.Direction.DESC, "boardNo"));
         return noticeBoardsRepository.findAll(pageable);
     }
+    @Transactional(readOnly = true)
+    public List<String> getAnonyBoardsCategoryList() {
+        return anonyBoardsRepository.getAnonyBoardsCategoryList();
+    }
 
-    public List<String> AnonyBoardsCategoryList() {
-        
+    public List<Integer> getAnonyBoardsCategoryCountList() {
+        return anonyBoardsRepository.getAnonyBoardsCategoryCountList();
+    }
+
+    public int thisWeekRegNoticePostCount(LocalDateTime currentDate) {
+        return noticeBoardsRepository.getThisWeekRegNoticePostCount(currentDate);
     }
 }

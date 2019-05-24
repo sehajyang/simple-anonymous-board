@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
+
 /**
  * @author seha
  * @date 2019-05-15
@@ -32,4 +34,8 @@ public interface NoticeBoardsRepository extends JpaRepository<NoticeBoards, Long
            "WHERE b.boardNo = :boardNo")
    int delBoard(@Param("boardNo") Long boardNo);
 
+   @Query("SELECT count(b) " +
+           "FROM NoticeBoards b " +
+           "WHERE b.regdate > :currentDate")
+   int getThisWeekRegNoticePostCount(@Param("currentDate") LocalDateTime currentDate);
 }

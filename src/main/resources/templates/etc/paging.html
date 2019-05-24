@@ -4,30 +4,31 @@
         var pageRange = 3;
         var startPage = Math.floor('{{pageNo}}' / pageRange);
         var hText = '';
+        var boardKind = $('#board-kind');
 
         if (startPage < 1) {
             for (var i = 0; i < pageRange; i++) {
-                pageBtnList(i, 'anony');
+                pageBtnList(i, boardKind);
                 if (i === pageRange - 1 && i < pageLastNum) {
-                    nextBtn(i, 'anony');
+                    nextBtn(i, boardKind);
                 }
             }
         } else if (startPage * pageRange + pageRange < pageLastNum) {
             for (var j = startPage * pageRange; j < startPage * pageRange + pageRange; j++) {
                 if (j === startPage * pageRange) {
-                    prevBtn(j, 'anony')
+                    prevBtn(j, boardKind)
                 }
-                pageBtnList(j, 'anony');
+                pageBtnList(j, boardKind);
                 if (j === startPage * pageRange + pageRange - 1) {
-                    nextBtn(j, 'anony');
+                    nextBtn(j, boardKind);
                 }
             }
         } else {
             for (var k = startPage * pageRange; k < pageLastNum; k++) {
                 if (k === startPage * pageRange) {
-                    prevBtn(k, 'anony')
+                    prevBtn(k, boardKind)
                 }
-                pageBtnList(k, 'anony');
+                pageBtnList(k, boardKind);
             }
         }
 

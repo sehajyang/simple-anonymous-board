@@ -1,0 +1,59 @@
+<script>
+    $(document).ready(function () {
+        var pageLastNum = Number('{{pageLastNum}}');
+        var pageRange = 3;
+        var startPage = Math.floor('{{pageNo}}' / pageRange);
+        var hText = '';
+
+        if (startPage < 1) {
+            for (var i = 0; i < pageRange; i++) {
+                pageBtnList(i, 'anony');
+                if (i === pageRange - 1 && i < pageLastNum) {
+                    nextBtn(i, 'anony');
+                }
+            }
+        } else if (startPage * pageRange + pageRange < pageLastNum) {
+            for (var j = startPage * pageRange; j < startPage * pageRange + pageRange; j++) {
+                if (j === startPage * pageRange) {
+                    prevBtn(j, 'anony')
+                }
+                pageBtnList(j, 'anony');
+                if (j === startPage * pageRange + pageRange - 1) {
+                    nextBtn(j, 'anony');
+                }
+            }
+        } else {
+            for (var k = startPage * pageRange; k < pageLastNum; k++) {
+                if (k === startPage * pageRange) {
+                    prevBtn(k, 'anony')
+                }
+                pageBtnList(k, 'anony');
+            }
+        }
+
+        $('#btn-page').append(hText);
+
+        function pageBtnList(i, boardName) {
+            if (i === Number('{{pageNo}}')) {
+                hText += '<button type="button" class="btn btn-primary" \n' +
+                    '                            onclick="location.href=\'/boards/' + boardName + '?pageNo=' + i + '\'">' + (i + 1) + '</button>';
+            } else {
+                hText += '<button type="button" class="btn btn-success" \n' +
+                    '                            onclick="location.href=\'/boards/' + boardName + '?pageNo=' + i + '\'">' + (i + 1) + '</button>';
+            }
+            return hText;
+        }
+
+        function prevBtn(i, boardName) {
+            hText += '<button type="button" class="btn btn-success" \n' +
+                '                            onclick="location.href=\'/boards/' + boardName + '?pageNo=' + (i - 1) + '\'">이전</button>';
+            return hText;
+        }
+
+        function nextBtn(i, boardName) {
+            hText += '<button type="button" class="btn btn-success" \n' +
+                '                            onclick="location.href=\'/boards/' + boardName + '?pageNo=' + (i + 1) + '\'">다음</button>';
+            return hText;
+        }
+    });
+</script>

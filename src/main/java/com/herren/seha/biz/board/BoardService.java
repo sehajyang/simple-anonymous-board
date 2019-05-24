@@ -9,7 +9,10 @@ import com.herren.seha.domain.boards.notice.NoticeBoardsRepository;
 import com.herren.seha.dto.boards.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -136,6 +139,12 @@ public class BoardService {
         AnonyBoards an = new AnonyBoards();
         an.setBoardNo(boardNo);
         return anonyBoardsLikeRepository.findByBoardNoAndUserNo(an, userNo);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<AnonyBoards> getAnonyBoardsAllList(int pageNo, int size){
+        Pageable pageable = PageRequest.of(pageNo,size, new Sort(Sort.Direction.DESC, "boardNo"));
+        return anonyBoardsRepository.findAll(pageable);
     }
 
 

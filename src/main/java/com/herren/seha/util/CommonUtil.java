@@ -24,6 +24,10 @@ public class CommonUtil {
     //FIXME : 중복코드 해결요망!
     public static List<BoardsMainResponseDto> makeLimitList(List<BoardsMainResponseDto> list, int max) {
         List<BoardsMainResponseDto> resultList = new ArrayList<>();
+
+        if (list.size() < max) {
+            max = list.size();
+        }
         for (int i = 0; i < max; i++) {
             resultList.add(list.get(i));
         }

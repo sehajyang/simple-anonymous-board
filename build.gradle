@@ -39,10 +39,16 @@ dependencies {
     compile 'org.webjars:jquery:3.4.1'
     compile 'org.webjars:bootstrap:4.3.1'
     compile 'org.webjars:font-awesome:5.8.2'
-    compile 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.1'
     compile group: 'com.github.jknack', name: 'handlebars-jackson2', version: '2.3.1'
 
     compile group: 'com.ullink.slack', name: 'simpleslackapi', version: '0.6.0'
+    compile 'pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.0'
+
+    compile 'com.github.jknack:handlebars-helpers:4.0.7',
+            'com.github.jknack:handlebars-jackson2:4.0.7',
+            'com.github.jknack:handlebars-humanize:4.0.7',
+            'com.github.jknack:handlebars-markdown:4.0.7'
+
 
 
 }

@@ -1,12 +1,13 @@
 package com.herren.seha.domain.boards.anony;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.stream.Stream;
 
 /**
@@ -15,6 +16,9 @@ import java.util.stream.Stream;
  */
 public interface AnonyBoardsRepository extends JpaRepository<AnonyBoards, Long> {
     //  JpaRepository<Entity클래스, PK타입> 상속
+
+    Page<AnonyBoards> findAll(Pageable request);
+
     @Query("SELECT b " +
             "FROM AnonyBoards b " +
             "ORDER BY b.regdate DESC")

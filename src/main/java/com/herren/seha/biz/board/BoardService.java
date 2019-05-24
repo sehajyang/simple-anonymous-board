@@ -16,6 +16,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.net.ContentHandler;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -149,5 +150,9 @@ public class BoardService {
     public Page<NoticeBoards> getNoticeBoardsAllList(int pageNo, int size) {
         Pageable pageable = PageRequest.of(pageNo, size, new Sort(Sort.Direction.DESC, "boardNo"));
         return noticeBoardsRepository.findAll(pageable);
+    }
+
+    public List<String> AnonyBoardsCategoryList() {
+        
     }
 }

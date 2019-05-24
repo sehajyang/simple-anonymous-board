@@ -78,4 +78,10 @@ public class CommonUtil {
         }
         return Integer.parseInt(sdf.format(date));
     }
+
+    public static String getTodayyyyyMMdd() {
+        Date date = new Date();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+        return (sdf.format(date));
+    }
 }

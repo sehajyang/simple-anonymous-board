@@ -1,5 +1,6 @@
 package com.herren.seha.controller;
 
+import com.herren.seha.biz.User.UserService;
 import com.herren.seha.biz.board.BoardService;
 import com.herren.seha.domain.boards.anony.AnonyBoards;
 import com.herren.seha.domain.boards.anony.AnonyBoardsLikeRepository;
@@ -34,6 +35,9 @@ public class AnonyBoardController {
     private BoardService boardService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private AnonyBoardsLikeRepository anonyBoardsLikeRepository;
 
     @GetMapping("/")
@@ -46,7 +50,9 @@ public class AnonyBoardController {
         Long anonyBoardTotalCount = boardService.getAnonyBoardsAllList(0,10 ).getTotalElements();
         Page<NoticeBoards> noticeBoardList = boardService.getNoticeBoardsLists(0, Constant.boardListCountDefault);
         List<AnonyBoards> anonyBoardListLikeTop5 = boardService.getAnonyBoardsLikeTop5Lists().getContent();
-
+        List<String> loginHistoriesDateTimeList = userService.getdateTimeLoginHistoriesByDateTime().getContent();
+        List<Integer> loginHistoriesCountList = userService.getCountLoginHistoriesByDateTime().getContent();
+        List<String> AnonyBoardsCategoryList = boardService.AnonyBoardsCategoryList();
         int todaysNewAnonyPostCount = boardService.getTodaysNewAnonyPostCount(LocalDateTime.of
                 (CommonUtil.getTodayyyyyMMdd("year"), CommonUtil.getTodayyyyyMMdd("month"), CommonUtil.getTodayyyyyMMdd("day"),
                         00, 00, 00));
@@ -56,6 +62,8 @@ public class AnonyBoardController {
         model.addAttribute("boardList", noticeBoardList.getContent());
         model.addAttribute("anonyBoardListLikeTop5", anonyBoardListLikeTop5);
         model.addAttribute("todaysNewAnonyPostCount", todaysNewAnonyPostCount);
+        model.addAttribute("loginHistoriesDateTimeList", loginHistoriesDateTimeList);
+        model.addAttribute("loginHistoriesCountList", loginHistoriesCountList);
 
         model.addAttribute("ssId", session.getAttribute("ssId"));
 

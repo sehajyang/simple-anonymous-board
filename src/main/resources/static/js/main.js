@@ -588,11 +588,11 @@
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          labels: ['January', 'February'],
           datasets: [
             {
-              label: "My First dataset",
-              data: [78, 81, 80, 64, 65, 80, 70, 75, 67, 85, 66, 68],
+              label: "방문자 수",
+              data: $('#login-count').val(),
               borderColor: "transparent",
               borderWidth: "0",
               backgroundColor: "#ccc",

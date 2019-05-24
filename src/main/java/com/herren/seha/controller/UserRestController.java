@@ -1,6 +1,7 @@
 package com.herren.seha.controller;
 
 import com.herren.seha.biz.User.UserService;
+import com.herren.seha.domain.user.LoginHistoryRepository;
 import com.herren.seha.domain.user.Users;
 import com.herren.seha.dto.user.UserSaveRequestDto;
 import lombok.AllArgsConstructor;
@@ -25,16 +26,19 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
+    private LoginHistoryRepository loginHistoryRepository;
+
     @PostMapping("/login")
     public Long doLogin(@RequestBody UserSaveRequestDto dto, HttpSession session) {
         Users getUserData = userService.getUsersById(dto.getId());
-        return doCheckUserIdAndPasswdAndCreateSession(getUserData, dto.getPasswd(), session);
+        return doCheckUserIdAndPasswdAndCreateSessionAndSaveLoginHist(getUserData, dto.getPasswd(), session);
     }
 
-    private Long doCheckUserIdAndPasswdAndCreateSession(Users getUserData, String clientReceivedPasswd, HttpSession session) {
+    private Long doCheckUserIdAndPasswdAndCreateSessionAndSaveLoginHist(Users getUserData, String clientReceivedPasswd, HttpSession session) {
         if (clientReceivedPasswd != null && getUserData.getPasswd() != null) {
             if (clientReceivedPasswd.equals(getUserData.getPasswd())) {
                 saveSessionAndGrade(session, getUserData);
+                userService.regLoginHistory(getUserData.getUserNo());
                 return 1L;
             }
             return 0L;

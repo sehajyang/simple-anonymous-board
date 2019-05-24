@@ -22,6 +22,107 @@
             padding-top: 17px;
         }
     </style>
+    <script>
+        $(function () {
+            var ctx = document.getElementById("login-count-chart");
+            if (ctx) {
+                ctx.height = 220;
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: {{loginHistoriesDateTimeList}},
+                        datasets: [
+                            {
+                                label: "방문자 수",
+                                data: {{loginHistoriesCountList}},
+                                borderColor: "transparent",
+                                borderWidth: "0",
+                                backgroundColor: "#28a745",
+                            }
+                        ]
+                    },
+                    options: {
+                        maintainAspectRatio: true,
+                        legend: {
+                            display: false
+                        },
+                        scales: {
+                            xAxes: [{
+                                display: false,
+                                categoryPercentage: 1,
+                                barPercentage: 0.6
+                            }],
+                            yAxes: [{
+                                display: false
+                            }]
+                        }
+                    }
+                });
+            }
+
+            // Percent Chart
+            var ctxCircleChart = document.getElementById("category-chart");
+            if (ctxCircleChart) {
+                ctxCircleChart.height = 250;
+                var myChart = new Chart(ctxCircleChart, {
+                    type: 'doughnut',
+                    data: {
+                        datasets: [
+                            {
+                                label: "My First dataset",
+                                data: [30, 20, 50],
+                                backgroundColor: [
+                                    '#00b5e9',
+                                    '#fa4251',
+                                    '#00ad5f'
+                                ],
+                                hoverBackgroundColor: [
+                                    '#00b5e9',
+                                    '#fa4251',
+                                    '#00ad5f'
+                                ],
+                                borderWidth: [
+                                    0, 0, 0
+                                ],
+                                hoverBorderColor: [
+                                    'transparent',
+                                    'transparent',
+                                    'transparent'
+                                ]
+                            }
+                        ],
+                        labels: [
+                            '건의사항',
+                            '불편사항',
+                            '자유 글'
+                        ]
+                    },
+                    options: {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        cutoutPercentage: 55,
+                        animation: {
+                            animateScale: true,
+                            animateRotate: true
+                        },
+                        legend: {
+                            display: false
+                        },
+                        tooltips: {
+                            titleFontFamily: "Poppins",
+                            xPadding: 15,
+                            yPadding: 10,
+                            caretPadding: 0,
+                            bodyFontSize: 16
+                        }
+                    }
+                });
+            }
+
+
+        });
+
+    </script>
 </head>
 {{> layout/sidebar}}
 <div class="page-container">
@@ -30,6 +131,7 @@
         <section class="statistic statistic2">
             <div class="container">
                 <h1>Herren Anonymous Board</h1>
+                <input type="hidden" id="login-count" value="{{loginCount}}">
                 <hr>
                 <div class="row">
                     <div class="col-md-6 col-lg-3">
@@ -87,7 +189,7 @@
                         <div class="statistic-chart-1">
                             <h3 class="title-3 m-b-30">방문자 수</h3>
                             <div class="chart-wrap">
-                                <canvas id="widgetChart5"></canvas>
+                                <canvas id="login-count-chart"></canvas>
                             </div>
                             <div class="statistic-chart-1-note">
                                 <span class="big">10</span>
@@ -122,7 +224,7 @@
                         <div class="chart-percent-2">
                             <h3 class="title-3 m-b-30">카테고리</h3>
                             <div class="chart-wrap">
-                                <canvas id="percent-chart"></canvas>
+                                <canvas id="category-chart"></canvas>
                                 <div id="chartjs-tooltip">
                                     <table></table>
                                 </div>

@@ -6,14 +6,18 @@ import com.herren.seha.domain.user.Users;
 import com.herren.seha.dto.user.LoginHistorySaveRequestDto;
 import com.herren.seha.dto.user.UserSaveRequestDto;
 import com.herren.seha.util.CommonUtil;
+import com.herren.seha.util.Sha256Util;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.core.env.Environment;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Objects;
 
 /**
  * @author seha
@@ -26,9 +30,15 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     private UserRepository userRepository;
     private LoginHistoryRepository loginHistoryRepository;
+    private final Environment env;
 
     @Transactional
     public Long regUserData(UserSaveRequestDto dto) {
+        String salt = env.getProperty("salt");
+
+        String passwd = Sha256Util.getEncrypt(dto.getPasswd(), Objects.requireNonNull(salt));
+        dto.setPasswd(passwd);
+
         return userRepository.save(dto.toEntity()).getUserNo();
     }
 

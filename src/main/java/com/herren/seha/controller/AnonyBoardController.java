@@ -54,10 +54,10 @@ public class AnonyBoardController {
         List<Integer> loginHistoriesCountList = userService.getCountLoginHistoriesByDateTime().getContent();
         List<Integer> AnonyBoardsCategoryCountList = boardService.getAnonyBoardsCategoryCountList();
         int todaysNewAnonyPostCount = boardService.getTodaysNewAnonyPostCount(LocalDateTime.of
-                (CommonUtil.getTodayyyyyMMdd("year"), CommonUtil.getTodayyyyyMMdd("month"), CommonUtil.getTodayyyyyMMdd("day")-7,
+                (CommonUtil.getTodayyyyyMMdd("year"), CommonUtil.getTodayyyyyMMdd("month"), CommonUtil.getTodayyyyyMMdd("day"),
                         00, 00, 00));
         int thisWeekRegAnonyPostCount = boardService.thisWeekRegNoticePostCount(LocalDateTime.of
-                (CommonUtil.getTodayyyyyMMdd("year"), CommonUtil.getTodayyyyyMMdd("month"), CommonUtil.getTodayyyyyMMdd("day"),
+                (CommonUtil.getTodayyyyyMMdd("year"), CommonUtil.getTodayyyyyMMdd("month"), CommonUtil.getTodayyyyyMMdd("day")-7,
                         00, 00, 00));
 
         model.addAttribute("anonyBoardTotalCount", anonyBoardTotalCount);

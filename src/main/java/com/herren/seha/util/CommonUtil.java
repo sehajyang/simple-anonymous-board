@@ -1,6 +1,7 @@
 package com.herren.seha.util;
 
 import com.herren.seha.dto.boards.BoardsMainResponseDto;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,6 +19,7 @@ import java.util.Optional;
  * @author seha
  * @date 2019-05-20
  */
+@Log4j2
 public class CommonUtil {
 
     //FIXME : 중복코드 해결요망!
@@ -68,6 +70,7 @@ public class CommonUtil {
 
     public static int getTodayyyyyMMdd(String kind) {
         Date date = new Date();
+        log.debug("date"+date);
         SimpleDateFormat sdf = new SimpleDateFormat();
         if ("year".equals(kind)) {
             sdf = new SimpleDateFormat("yyyy");

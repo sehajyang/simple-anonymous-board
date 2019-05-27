@@ -26,6 +26,11 @@ var main = {
             };
         }
 
+        if($('#title').val() === "" || $('#content').val() === ""){
+            alert('빈 필드를 채워주세요');
+            return false;
+        }
+
         $.ajax({
             type: 'POST',
             url: '/boards/' + $('#board-kind').val() + '/' + $('#board-no').val(),

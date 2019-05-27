@@ -26,6 +26,11 @@ var main = {
             };
         }
 
+        if($('#title').val() === "" || $('#content').val() === ""){
+            alert('빈 필드를 채워주세요');
+            return false;
+        }
+
         $.ajax({
             type: 'POST',
             url: '/boards/' + $('#board-kind').val() + '/',
@@ -57,6 +62,11 @@ var join = {
             id : $('#id').val(),
             passwd : $('#passwd').val()
         };
+
+        if($('#id').val() === "" || $('#passwd').val() === ""){
+            alert('빈 필드를 채워주세요');
+            return false;
+        }
 
         $.ajax({
             type: 'POST',

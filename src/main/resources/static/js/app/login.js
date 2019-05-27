@@ -11,6 +11,11 @@ var login = {
             passwd: $('#passwd').val(),
         };
 
+        if($('#id').val() === "" || $('#passwd').val() === ""){
+            alert('빈 필드를 채워주세요');
+            return false;
+        }
+
         $.ajax({
             type: 'POST',
             url: '/login',

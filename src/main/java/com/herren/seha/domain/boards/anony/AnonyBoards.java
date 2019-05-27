@@ -42,12 +42,15 @@ public class AnonyBoards extends BaseTimeEntity {
 
     private String sendyn;
 
+    private String uuid;
+
     @OneToMany(mappedBy = "boardNo", cascade = {CascadeType.ALL})
     private Set<AnonyBoardsLike> anonyboardsLike = new HashSet<>();
 
 
     @Builder
-    public AnonyBoards(String title, String passwd, String writer, String content, Integer hit, String category, String sendyn) {
+    public AnonyBoards(String title, String passwd, String writer, String content, Integer hit,
+                       String category, String sendyn, String uuid) {
         this.title = title;
         this.passwd = passwd;
         this.writer = writer;
@@ -55,6 +58,7 @@ public class AnonyBoards extends BaseTimeEntity {
         this.hit = hit;
         this.category = category;
         this.sendyn = sendyn;
+        this.uuid = uuid;
     }
 
 }

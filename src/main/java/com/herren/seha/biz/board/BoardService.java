@@ -20,6 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * @author seha
@@ -46,7 +47,8 @@ public class BoardService {
 
     @Transactional
     public int modAnonyBoards(Long boardNo, String title, String content, String passwd, String category, String sendyn) {
-        return anonyBoardsRepository.modBoard(boardNo, title, content, passwd, category, sendyn);
+        String uuid = UUID.randomUUID().toString();
+        return anonyBoardsRepository.modBoard(boardNo, title, content, passwd, category, sendyn, uuid);
     }
 
     @Transactional
@@ -156,4 +158,5 @@ public class BoardService {
     public int thisWeekRegNoticePostCount(LocalDateTime currentDate) {
         return noticeBoardsRepository.getThisWeekRegNoticePostCount(currentDate);
     }
+
 }

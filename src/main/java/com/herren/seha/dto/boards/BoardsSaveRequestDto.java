@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.UUID;
+
 /**
  * @author seha
  * @date 2019-05-15
@@ -23,10 +25,11 @@ public class BoardsSaveRequestDto {
     private String category;
     private Integer hit;
     private String sendyn;
+    private String uuid;
 
     @Builder
     public BoardsSaveRequestDto(String title, String content, String passwd, String writer,
-                                String category, Integer hit, String sendyn) {
+                                String category, Integer hit, String sendyn, String uuid) {
         this.title = title;
         this.content = content;
         this.passwd = passwd;
@@ -34,6 +37,7 @@ public class BoardsSaveRequestDto {
         this.category = category;
         this.hit = 0;
         this.sendyn = sendyn;
+        this.uuid = UUID.randomUUID().toString();
     }
 
     public AnonyBoards toEntity() {
@@ -45,6 +49,7 @@ public class BoardsSaveRequestDto {
                 .category(category)
                 .hit(0)
                 .sendyn(sendyn)
+                .uuid(UUID.randomUUID().toString())
                 .build();
     }
 

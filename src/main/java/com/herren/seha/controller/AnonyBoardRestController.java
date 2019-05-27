@@ -46,14 +46,16 @@ public class AnonyBoardRestController {
     }
 
     @PostMapping("/boards/anony/{boardNo}/checkpwd")
-    public Long getBoardsCheckPasswd(@PathVariable("boardNo") Long boardNo, String passwd) {
+    public String getBoardsCheckPasswd(@PathVariable("boardNo") Long boardNo, String passwd) {
         String getDbPasswd = boardService.getBoardsCheckPasswd(boardNo, passwd);
+
         if (passwd != null) {
             if (passwd.equals(getDbPasswd)) {
-                return 1L;
+                AnonyBoards anonyBoards = boardService.getAnonyBoardsDetail(boardNo);
+                return anonyBoards.getUuid();
             }
         }
-        return 0L;
+        return Constant.RESULT_FAIL;
     }
 
 

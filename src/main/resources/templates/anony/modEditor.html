@@ -11,6 +11,14 @@
     }
 </style>
 {{> layout/sidebar}}
+<script>
+    $(document).ready(function () {
+        if(document.cookie !== 'passauth='+'{{boardDetail.uuid}}'){
+            alert('부적절한 경로입니다');
+            location.href = "/boards/"+$('#board-kind').val()+"/{{boardNo}}"
+        }
+    });
+</script>
 <div class="page-container">
     <div class="main-container">
         <div class="section__content section__content--p30">

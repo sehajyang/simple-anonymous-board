@@ -30,10 +30,12 @@ public interface AnonyBoardsRepository extends JpaRepository<AnonyBoards, Long> 
             "b.content = :content, " +
             "b.category = :category, " +
             "b.passwd = :passwd," +
-            "b.sendyn = :sendyn " +
+            "b.sendyn = :sendyn," +
+            "b.uuid = :uuid " +
             "WHERE b.boardNo = :boardNo")
     int modBoard(@Param("boardNo") Long boardNo, @Param("title") String title, @Param("content") String content,
-                 @Param("passwd") String passwd, @Param("category") String category, @Param("sendyn") String sendyn);
+                 @Param("passwd") String passwd, @Param("category") String category, @Param("sendyn") String sendyn,
+                 @Param("uuid") String uuid);
 
     @Modifying
     @Query("DELETE FROM AnonyBoards b " +

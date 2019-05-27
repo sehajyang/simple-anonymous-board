@@ -21,6 +21,7 @@ public class BoardsMainResponseDto {
     private int hit;
     private String sendyn;
     private String moddate;
+    private String uuid;
 
     public BoardsMainResponseDto(AnonyBoards entity) {
         boardNo = entity.getBoardNo();
@@ -32,6 +33,7 @@ public class BoardsMainResponseDto {
         hit = entity.getHit();
         sendyn = entity.getSendyn();
         moddate = toStringDateTime(entity.getModdate());
+        uuid = entity.getUuid();
     }
 
 

@@ -14,7 +14,8 @@ window.onload = function() {
                     passwd: $('#passwd').val()
                 }
             }).done(function (data) {
-                if (data === 1) {
+                if (data !== 'FAIL') {
+                    document.cookie = 'passauth='+data;
                     if($('#mod-del-type-save').val() === 'mod'){
                         location.href = '/boards/' + $('#board-kind').val() + '/' + $('#board-no').val() + '/editor';
                     }else if($('#mod-del-type-save').val() === 'del'){

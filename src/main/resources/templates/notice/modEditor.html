@@ -11,6 +11,17 @@
     }
 </style>
 {{> layout/sidebar}}
+<script>
+    $(document).ready(function () {
+        if('{{grade}}' === '사장'|| '{{grade}}' === '관리자'){
+            return true;
+        }else{
+            alert('권한이 없습니다');
+            return location.href='/boards/notice';
+        }
+    });
+
+</script>
 <div class="page-container">
     <div class="main-container">
         <div class="section__content section__content--p30">
@@ -26,6 +37,7 @@
                     <div class="card">
                         <div class="card-header">
                             <strong>공지게시판 </strong> 글 수정
+                            {{boardDetail.uuid}}
                         </div>
                         <input type="hidden" id="mod-del-type-save" value="mod">
                         <!-- START CARD EDITOR -->
@@ -83,36 +95,15 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="select" class=" form-control-label">Category</label>
+                                        <label for="category" class=" form-control-label">Category</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <select name="select" id="select" class="form-control">
-                                            <option>선택해주세요</option>
-                                            <option value="건의사항">건의사항</option>
-                                            <option value="불편사항">불편사항</option>
-                                            <option value="사이트불편">사이트 불편사항</option>
-                                            <option value="자유글">자유 글</option>
+                                        <select name="select" id="category" class="form-control">
+                                            <option value="기타">선택해주세요</option>
+                                            <option value="전체공지">전체공지</option>
+                                            <option value="답변">답변</option>
+                                            <option value="사이트업데이트">사이트 업데이트</option>
                                         </select>
-                                    </div>
-                                </div>
-                                <!-- START RADIO BOX -->
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label class=" form-control-label">알림 발송 여부</label>
-                                    </div>
-                                    <div class="col col-md-9">
-                                        <div class="form-check-inline form-check">
-                                            <label for="inline-radio1" class="form-check-label ">
-                                                <input type="radio" id="inline-radio1" name="inline-radios"
-                                                       value="option1"
-                                                       class="form-check-input">네&nbsp;
-                                            </label>
-                                            <label for="inline-radio2" class="form-check-label ">
-                                                <input type="radio" id="inline-radio2" name="inline-radios"
-                                                       value="option2"
-                                                       class="form-check-input">아니오
-                                            </label>
-                                        </div>
                                     </div>
                                 </div>
                             </form>

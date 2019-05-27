@@ -68,8 +68,9 @@ public class BoardService {
     }
 
     @Transactional
-    public int modNoticeBoards(Long boardNo, String title, String content) {
-        return noticeBoardsRepository.modBoard(boardNo, title, content);
+    public int modNoticeBoards(Long boardNo, String title, String content, String category) {
+        String uuid = UUID.randomUUID().toString();
+        return noticeBoardsRepository.modBoard(boardNo, title, content, uuid, category);
     }
 
     @Transactional
@@ -146,15 +147,18 @@ public class BoardService {
         Pageable pageable = PageRequest.of(pageNo, size, new Sort(Sort.Direction.DESC, "boardNo"));
         return noticeBoardsRepository.findAll(pageable);
     }
+
     @Transactional(readOnly = true)
     public List<String> getAnonyBoardsCategoryList() {
         return anonyBoardsRepository.getAnonyBoardsCategoryList();
     }
 
+    @Transactional(readOnly = true)
     public List<Integer> getAnonyBoardsCategoryCountList() {
         return anonyBoardsRepository.getAnonyBoardsCategoryCountList();
     }
 
+    @Transactional(readOnly = true)
     public int thisWeekRegNoticePostCount(LocalDateTime currentDate) {
         return noticeBoardsRepository.getThisWeekRegNoticePostCount(currentDate);
     }

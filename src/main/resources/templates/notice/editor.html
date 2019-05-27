@@ -39,17 +39,7 @@
                                                placeholder= "관리자"
                                                disabled=""
                                                class="form-control"
-                                               value="관리자">
-                                    </div>
-                                </div>
-                                <div class="row form-group">
-                                    <div class="col col-md-3">
-                                        <label for="passwd" class=" form-control-label">Password</label>
-                                    </div>
-                                    <div class="col-12 col-md-9">
-                                        <input type="password" id="passwd" name="passwd" placeholder="비밀번호를 입력해주세요"
-                                               class="form-control">
-                                        <small class="form-text text-muted">비밀번호는 암호화됩니다</small>
+                                               value="{{grade}}">
                                     </div>
                                 </div>
                                 <div class="row form-group">
@@ -72,14 +62,14 @@
                                 </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
-                                        <label for="select" class=" form-control-label">Category</label>
+                                        <label for="category" class=" form-control-label">Category</label>
                                     </div>
                                     <div class="col-12 col-md-9">
-                                        <select name="select" id="select" class="form-control">
-                                            <option value="">선택해주세요</option>
-                                            <option value="알림">전체공지</option>
+                                        <select name="select" id="category" class="form-control">
+                                            <option value="기타">선택해주세요</option>
+                                            <option value="전체공지">전체공지</option>
+                                            <option value="답변">답변</option>
                                             <option value="사이트업데이트">사이트 업데이트</option>
-                                            <option value="기타">기타</option>
                                         </select>
                                     </div>
                                 </div>

@@ -34,7 +34,7 @@
                     <h1 class="title-1 m-b-35"><b>공지 게시판</b></h1>
                     <input type="hidden" id="board-kind" value="notice">
                     <input type="hidden" id="page-last-num" value="{{pageLastNum}}">
-                    <button type="button" class="btn btn-primary" onclick="location.href='/boards/notice/editor';checkGrade('{{grade}}')">글 등록
+                    <button type="button" class="btn btn-primary" onclick="checkGrade('{{grade}}')">글 등록
                     </button>
                     <div class="table-responsive table--no-card m-b-30">
                         <!-- 목록 출력 영역 -->
@@ -52,7 +52,7 @@
                             {{#each boardList}}
                             <tr onclick="location.href='/boards/notice/{{boardNo}}'">
                                 <td>{{boardNo}}</td>
-                                <td>미정</td>
+                                <td>{{category}}</td>
                                 <td class="title-td">{{title}}</td>
                                 <td>관리자</td>
                                 <td class="text-right">{{moddate}}</td>
@@ -74,7 +74,7 @@
 <script>
     function checkGrade(grade){
         if(grade === '사장'|| grade === '관리자'){
-            return true;
+            location.href='/boards/notice/editor';
         }else{
             alert('권한이 없습니다');
             return location.href='/boards/notice';

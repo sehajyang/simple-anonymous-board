@@ -25,9 +25,13 @@ public interface NoticeBoardsRepository extends JpaRepository<NoticeBoards, Long
    @Modifying(clearAutomatically = true)
    @Query("UPDATE NoticeBoards b " +
            "SET b.title = :title," +
-           "b.content = :content " +
+           "b.content = :content," +
+           "b.uuid = :uuid," +
+           "b.category = :category " +
            "WHERE b.boardNo = :boardNo")
-   int modBoard(@Param("boardNo") Long boardNo, @Param("title") String title, @Param("content") String content);
+   int modBoard(@Param("boardNo") Long boardNo, @Param("title") String title,
+                @Param("content") String content, @Param("uuid") String uuid,
+                @Param("category") String category);
 
    @Modifying
    @Query("DELETE FROM NoticeBoards b " +

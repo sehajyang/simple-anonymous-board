@@ -38,7 +38,7 @@ public class CommonUtil {
 
     public static Boolean checkGradeAndRedirect(HttpSession session) {
         String grade = (String) session.getAttribute("grade");
-        if (!"사장".equals(grade)) {
+        if (!"사장".equals(grade) && !"관리자".equals(grade)) {
             return false;
         }
         return true;
@@ -70,7 +70,7 @@ public class CommonUtil {
 
     public static int getTodayyyyyMMdd(String kind) {
         Date date = new Date();
-        log.debug("date"+date);
+        log.debug("date" + date);
         SimpleDateFormat sdf = new SimpleDateFormat();
         if ("year".equals(kind)) {
             sdf = new SimpleDateFormat("yyyy");

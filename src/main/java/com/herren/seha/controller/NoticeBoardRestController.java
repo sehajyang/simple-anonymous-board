@@ -44,4 +44,13 @@ public class NoticeBoardRestController {
         int result = boardService.delNoticeBoards(boardNo);
         return (result > 0) ? Constant.RESULT_SUCCESS : Constant.RESULT_FAIL;
     }
+
+    @PostMapping("/boards/notice/{boardNo}/checkpwd")
+    public String getBoardsCheckPasswd(@PathVariable("boardNo") Long boardNo, HttpSession session) {
+        if(!CommonUtil.checkGradeAndRedirect(session)){
+            return Constant.RESULT_FAIL;
+        }else{
+            return boardService.getNoticeBoardsDetail(boardNo).getUuid();
+        }
+    }
 }

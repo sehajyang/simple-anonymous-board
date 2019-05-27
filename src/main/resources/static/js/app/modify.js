@@ -21,14 +21,11 @@ var main = {
                 title: $('#title').val(),
                 passwd: $('#passwd').val(),
                 writer: $('#writer').val(),
-                content: $('#content').val()
+                content: $('#content').val(),
+                category: $('#category').val()
             };
         }
 
-        if(document.cookie !== 'passauth='+'{{boardDetail.uuid}}') {
-            alert('부적절한 경로로 접근했습니다');
-            location.href = "/boards/" + $('#board-kind').val() + "/{{boardNo}}"
-        }
         $.ajax({
             type: 'POST',
             url: '/boards/' + $('#board-kind').val() + '/' + $('#board-no').val(),

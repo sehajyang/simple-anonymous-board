@@ -32,8 +32,7 @@ public class NoticeBoardController {
         Page<NoticeBoards> boardList = boardService.getNoticeBoardsAllList(pageNo, Constant.boardListCountDefault);
         model.addAttribute("boardList", boardList.getContent());
         model.addAttribute("pageNo", pageNo);
-        model.addAttribute("pageLastNum", boardList.getTotalPages( ));
-        log.error("asdfasdf"+boardList.getTotalPages());
+        model.addAttribute("pageLastNum", boardList.getTotalPages());
 
         model.addAttribute("grade", session.getAttribute("grade"));
 
@@ -41,33 +40,47 @@ public class NoticeBoardController {
     }
 
     @GetMapping("/boards/notice/{boardNo}")
-    public String getNoticeBoardsDetail(@PathVariable("boardNo") Long boardNo, Model model) {
+    public String getNoticeBoardsDetail(@PathVariable("boardNo") Long boardNo, Model model, HttpSession session) {
         model.addAttribute("boardDetail", boardService.getNoticeBoardsDetail(boardNo));
+        model.addAttribute("grade", session.getAttribute("grade"));
+
         return "notice/boardDetail";
     }
 
     @GetMapping("/boards/notice/editor")
     public String getNoticeBoardsEditor(HttpSession session) {
-        if(!CommonUtil.checkGradeAndRedirect(session)){
+        if (!CommonUtil.checkGradeAndRedirect(session)) {
             return "redirect:/lobby";
         }
         return "notice/editor";
     }
 
     @GetMapping("/boards/notice/{boardNo}/editor")
-    public String getNoticeBoardsModEditorPage(@PathVariable("boardNo") Long boardNo, Model model){
+    public String getNoticeBoardsModEditorPage(@PathVariable("boardNo") Long boardNo,
+                                               Model model, HttpSession session) {
+        model.addAttribute("grade", session.getAttribute("grade"));
+
+        if (!CommonUtil.checkGradeAndRedirect(session)) {
+            return "redirect:/lobby";
+        }
         model.addAttribute("boardDetail", boardService.getNoticeBoardsDetail(boardNo));
         return "notice/modEditor";
+    }
+
+    @GetMapping("/boards/notice/{boardNo}/delete")
+    public String getNoticeBoardsDelPage(@PathVariable("boardNo") Long boardNo) {
+        return "redirect:/lobby";
+
     }
 
     @ResponseBody
     @PostMapping("boards/notice/{boardNo}")
     public Long modNoticeBoards(@PathVariable("boardNo") Long boardNo, @RequestBody BoardsSaveRequestDto dto,
-                                  HttpSession session) {
-        if(!CommonUtil.checkGradeAndRedirect(session)){
+                                HttpSession session) {
+        if (!CommonUtil.checkGradeAndRedirect(session)) {
             return 0L;
         }
-        int result = boardService.modNoticeBoards(boardNo, dto.getTitle(), dto.getContent());
+        int result = boardService.modNoticeBoards(boardNo, dto.getTitle(), dto.getContent(), dto.getCategory());
         return (long) result;
     }
 

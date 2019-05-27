@@ -36,12 +36,19 @@ public class NoticeBoards extends BaseTimeEntity {
 
     private Integer hit;
 
+    private String uuid;
+
+    private String category;
+
     @Builder
-    public NoticeBoards(String title, String passwd, String writer, String content) {
+    public NoticeBoards(String title, String passwd, String writer,
+                        String content, String uuid, String category) {
         this.title = title;
         this.passwd = passwd;
         this.writer = writer;
         this.content = content;
+        this.uuid = uuid;
+        this.category = category;
     }
 
 }

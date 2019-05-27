@@ -21,7 +21,8 @@ var main = {
                 title: $('#title').val(),
                 passwd: $('#passwd').val(),
                 writer: $('#writer').val(),
-                content: $('#content').val()
+                content: $('#content').val(),
+                category: $('#category').val()
             };
         }
 

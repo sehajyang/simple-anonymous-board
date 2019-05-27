@@ -28,6 +28,7 @@
                         <div class="card-header">
                             <strong>공지게시판 </strong> 글 보기
                             <input type="hidden" id="board-kind" value="notice">
+                            <input type="hidden" id="mod-del-type-save">
                         </div>
                         <div class="card-body card-block">
                             <!--목록 출력 영역 -->
@@ -60,7 +61,7 @@
                                     <label class=" form-control-label">카테고리</label>
                                 </div>
                                 <div class="col-12 col-md-9">
-                                    답변
+                                    {{boardDetail.category}}
                                 </div>
                             </div>
                             <div class="row form-group">
@@ -76,11 +77,12 @@
                         </div>
                         <div class="card-footer">
                             <input type="hidden" id="board-no" value="{{boardDetail.boardNo}}">
-                            <button type="button" class="btn btn-primary btn-sm" id="btn-check-pwd">
+                            <button type="button" class="btn btn-primary btn-sm"
+                                    onclick="$('#mod-del-type-save').val('mod');checkGrade('{{grade}}');">
                                 <i class="fa fa-dot-circle-o"></i>글 수정
                             </button>
                             <button type="button" class="btn btn-danger btn-sm"
-                                    onclick="onclickDelPost('{{boardDetail.boardNo}}')"><i class="fa fa-ban"></i>글 삭제
+                                    onclick="$('#mod-del-type-save').val('del');checkGrade('{{grade}}');"><i class="fa fa-ban"></i>글 삭제
                             </button>
                             <button type="button" class="btn btn-success btn-sm" onclick="location.href='/lobby'"><i class="fa fa-home"></i>홈</button>
                             <button type="button" class="btn btn-success btn-sm" onclick="location.href='/boards/notice'"><i class="fa fa-react"></i>뒤로가기</button>
@@ -92,6 +94,20 @@
         </div>
     </div>
 </div>
+<script>
+    function checkGrade(grade){
+        if(grade === '사장'|| grade === '관리자'){
+            if($('#mod-del-type-save').val() === 'mod'){
+                location.href='/boards/notice/'+'{{boardDetail.boardNo}}'+'/editor';
+            }else {
+                onclickDelPost('{{boardDetail.boardNo}}', '{{grade}}');
+            }
+        }else{
+            alert('권한이 없습니다');
+            return location.href='/boards/notice';
+        }
+    }
+</script>
 <script src="/js/app/delete.js"></script>
 <script src="/js/app/check-passwd.js"></script>
 

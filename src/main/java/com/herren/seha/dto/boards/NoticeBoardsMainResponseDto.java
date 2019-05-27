@@ -17,6 +17,8 @@ public class NoticeBoardsMainResponseDto {
     private String writer;
     private String content;
     private String moddate;
+    private String uuid;
+    private String category;
 
     // XXX : private 이던 toStringDateTime > public 으로해서 에러날 수 있음
     public NoticeBoardsMainResponseDto(NoticeBoards entity) {
@@ -26,6 +28,8 @@ public class NoticeBoardsMainResponseDto {
         writer = entity.getWriter();
         content = entity.getContent();
         moddate = CommonUtil.toStringDateTime(entity.getModdate());
+        uuid = entity.getUuid();
+        category = entity.getCategory();
     }
 }
 

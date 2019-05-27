@@ -22,7 +22,7 @@ import javax.persistence.Id;
 @ToString
 public class LoginHistory extends BaseTimeEntity {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long loginNo;
 
     private Long userNo;

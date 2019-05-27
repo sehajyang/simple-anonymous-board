@@ -22,7 +22,7 @@ import java.util.Set;
 public class AnonyBoards extends BaseTimeEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_no")
     private Long boardNo;
 

@@ -1,5 +1,7 @@
 # simple-anonymous-board
 심플 익명 게시판  
+![lobbyimage](https://github.com/sehajyang/simple-anonymous-board/blob/master/lobby.png)
+
 [API Document](https://github.com/sehajyang/simple-anonymous-board/wiki)  
 [프로젝트 일정관리](https://github.com/sehajyang/simple-anonymous-board/projects/1)
 

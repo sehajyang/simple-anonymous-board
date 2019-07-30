@@ -16,10 +16,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author seha
@@ -46,7 +50,10 @@ public class AnonyBoardController {
     }
 
     @GetMapping("/lobby")
-    public String lobbyPage(Model model, HttpSession session) {
+    @ResponseBody
+    public Object lobbyPage(Model model, HttpSession session) {
+        Map<String, Object> map = new HashMap<>();
+        ModelAndView mv = new ModelAndView("jsonView");
         Long anonyBoardTotalCount = boardService.getAnonyBoardsAllList(0,10 ).getTotalElements();
         Page<NoticeBoards> noticeBoardList = boardService.getNoticeBoardsLists(0, Constant.boardListCountDefault);
         List<AnonyBoards> anonyBoardListLikeTop5 = boardService.getAnonyBoardsLikeTop5Lists().getContent();
@@ -73,7 +80,8 @@ public class AnonyBoardController {
 
         model.addAttribute("ssId", session.getAttribute("ssId"));
 
-        return "lobby";
+        map.put("lists",boardService.getAnonyBoardsLikeTop5Lists().getContent());
+        return map;
     }
 
     @GetMapping("/boards/anony")

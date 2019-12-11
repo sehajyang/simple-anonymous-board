@@ -44,6 +44,8 @@ public class AnonyBoards extends BaseTimeEntity {
 
     private String uuid;
 
+    private String test;
+
     @OneToMany(mappedBy = "boardNo", cascade = {CascadeType.ALL})
     private Set<AnonyBoardsLike> anonyboardsLike = new HashSet<>();
 

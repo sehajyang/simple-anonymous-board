@@ -163,4 +163,8 @@ public class BoardService {
         return noticeBoardsRepository.getThisWeekRegNoticePostCount(currentDate);
     }
 
+    public void doNothing(){
+        System.out.println("nothing");
+    }
+
 }
